@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -20,6 +21,9 @@ ANBCharacter::ANBCharacter()
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
+	WalkSpeed = 250.0f;
+	SprintSpeed = 400.0f;
+	bisFiring = false;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -32,10 +36,11 @@ ANBCharacter::ANBCharacter()
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
+	CharacterMesh = GetMesh();
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 300.0f; // The camera follows at this distance behind the character	
+	CameraBoom->SetupAttachment(CharacterMesh);
+	CameraBoom->TargetArmLength = 5.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 												// Create a follow camera
@@ -54,8 +59,14 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ANBCharacter::OnJumpPressed);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ANBCharacter::OnJumpReleased);
+
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ANBCharacter::OnCrouchPressed);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ANBCharacter::OnCrouchReleased);
+
+	PlayerInputComponent->BindAction("SprintHold", IE_Pressed, this, &ANBCharacter::OnSprintPressed);
+	PlayerInputComponent->BindAction("SprintHold", IE_Released, this, &ANBCharacter::OnSprintReleased);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ANBCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ANBCharacter::MoveRight);
@@ -84,12 +95,53 @@ void ANBCharacter::OnResetVR()
 
 void ANBCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
-	Jump();
+	OnJumpPressed();
 }
 
 void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
+	OnJumpReleased();
+}
+
+void ANBCharacter::OnJumpPressed()
+{
+	Jump();
+	JumpButtonDown = true;
+}
+
+void ANBCharacter::OnJumpReleased()
+{
 	StopJumping();
+	JumpButtonDown = false;
+}
+
+void ANBCharacter::OnCrouchPressed()
+{
+	//the actual movement is handled in animation this intiates the movement
+	CrouchButtonDown = true;
+}
+
+void ANBCharacter::OnCrouchReleased()
+{
+	//the actual movement is handled in animation this intiates the movement
+	CrouchButtonDown = false;
+	
+}
+
+void ANBCharacter::OnSprintPressed()
+{
+	if (bisFiring == false)
+	{
+		MoveComp->MaxWalkSpeed = SprintSpeed;
+	}	
+}
+
+void ANBCharacter::OnSprintReleased()
+{
+	if (bisFiring == false)
+	{
+		MoveComp->MaxWalkSpeed = WalkSpeed;
+	}
 }
 
 void ANBCharacter::TurnAtRate(float Rate)

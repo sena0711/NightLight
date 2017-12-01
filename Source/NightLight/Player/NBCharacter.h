@@ -19,8 +19,8 @@ class NIGHTLIGHT_API  ANBCharacter : public ABaseCharacter
 	
 public:
 
-	/*UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
-		class USkeletalMeshComponent* FPSCharacterArmMesh;*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
+		class USkeletalMeshComponent* CharacterMesh;
 
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -41,8 +41,6 @@ public:
 	/************************************************************************/
 	/* Movement                                                        */
 	/************************************************************************/
-
-
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
 		float BaseTurnRate;
@@ -51,16 +49,39 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
 		float BaseLookUpRate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		float WalkSpeed;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		float SprintSpeed;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bisFiring;
+
+	/************************************************************************/
+	/* Movement Animation                                                       */
+	/************************************************************************/
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		bool JumpButtonDown;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		bool CrouchButtonDown;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+		bool CanSprint;
 
 protected:
+
+	/************************************************************************/
+	/* Basic Movement Functions                                                 */
+	/************************************************************************/
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
-
-	/** Called for side to side input */
 	void MoveRight(float Value);
 
 	/**
@@ -68,20 +89,24 @@ protected:
 	* @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	*/
 	void TurnAtRate(float Rate);
-
-	/**
-	* Called via input to turn look up/down at a given rate.
-	* @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	*/
 	void LookUpAtRate(float Rate);
 
 	/** Handler for when a touch input begins. */
 	void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
-
-	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
-	void OnCrouchToggle();
+	void OnJumpPressed();
+	void OnJumpReleased();
+
+	void OnCrouchPressed();
+	void OnCrouchReleased();
+
+	void OnSprintPressed();
+	void OnSprintReleased();
+
+	/************************************************************************/
+	/* Advanced Movenemt functions                                                  */
+	/************************************************************************/
 
 	void FireWeapon();
 	void PushAI();

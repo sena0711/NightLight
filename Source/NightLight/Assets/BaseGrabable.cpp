@@ -15,7 +15,7 @@ ABaseGrabable::ABaseGrabable()
 	
 	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PickupMesh"));
 	PickupMesh->SetupAttachment(RootComponent);
-
+	PickupMesh->SetSimulatePhysics(true);
 
 
 }
