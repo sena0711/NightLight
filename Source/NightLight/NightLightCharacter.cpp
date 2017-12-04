@@ -21,7 +21,7 @@ ANightLightCharacter::ANightLightCharacter()
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
-	MouseSensitivity = 1.0f;
+	MouseSensitivity = 0.1f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -112,12 +112,12 @@ void ANightLightCharacter::LookUpAtRate(float Rate)
 
 void ANightLightCharacter::AddMouseYawInput(float Value)
 {
-	Value = Value * MouseSensitivity;
-	if (Value != 0.f && Controller && Controller->IsLocalPlayerController())
+	float TurnValue = Value * MouseSensitivity;
+	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
 		//moving right
-		if (Value > 0.0)
+		if (TurnValue > 0.0)
 		{
 			if (bStopRightMouseInput)
 			{
@@ -125,7 +125,7 @@ void ANightLightCharacter::AddMouseYawInput(float Value)
 			}
 			else
 			{
-				PC->AddYawInput(Value);
+				PC->AddYawInput(TurnValue);
 			}
 
 		}
@@ -138,7 +138,7 @@ void ANightLightCharacter::AddMouseYawInput(float Value)
 			}
 			else
 			{
-				PC->AddYawInput(Value);
+				PC->AddYawInput(TurnValue);
 			}
 		}
 	}
@@ -146,11 +146,11 @@ void ANightLightCharacter::AddMouseYawInput(float Value)
 
 void ANightLightCharacter::AddMousePitchInput(float Value)
 {
-	Value = Value * MouseSensitivity;
-	if (Value != 0.f && Controller && Controller->IsLocalPlayerController())
+	float TurnValue = Value * MouseSensitivity;
+	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
-		PC->AddPitchInput(Value);
+		PC->AddPitchInput(TurnValue);
 	}
 }
 
