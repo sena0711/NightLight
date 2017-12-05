@@ -1,7 +1,7 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "NightLightGameMode.h"
-#include "NightLightCharacter.h"
+#include "Player/NBCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 ANightLightGameMode::ANightLightGameMode()
