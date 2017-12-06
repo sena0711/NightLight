@@ -50,3 +50,8 @@ void ABaseMovable::WhenHit(UPrimitiveComponent * HitComponent, AActor * OtherAct
 	UGameplayStatics::PlaySoundAtLocation(this, SoundHit, Hit.Location, volumeMultiplierFinalValue);
 }
 
+FVector ABaseMovable::GetLocationOfMesh()
+{
+	return FVector();
+}
+

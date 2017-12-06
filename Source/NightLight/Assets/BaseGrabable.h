@@ -13,8 +13,22 @@ UCLASS()
 class NIGHTLIGHT_API ABaseGrabable : public ABaseMovable
 {
 	GENERATED_BODY()
+
+protected:
+	ABaseGrabable();
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 	
-	
-	
-	
+	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+		FVector GetLocationOfMesh();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void InFocus();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void NotInFocus();
+
 };
