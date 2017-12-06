@@ -5,10 +5,17 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/SceneComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Engine.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "../Assets/BaseGrabable.h"
+#include "../Assets/BasePickupable.h"
+#include "NBPlayerController.h"
+
 //////////////////////////////////////////////////////////////////////////
 // ANBCharacter
 
@@ -25,6 +32,7 @@ ANBCharacter::ANBCharacter()
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
 	MouseSensitivity = 0.1f;
+	MaxInteractDistance = 500.0f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -41,21 +49,84 @@ ANBCharacter::ANBCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->bOrientRotationToMovement = false;
 
+	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandler"));
 }
 
 
 void ANBCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	CheckForGrabalbeItem();
+	CheckForGrabableItem();
 }
 
 
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void ANBCharacter::CheckForGrabalbeItem()
+void ANBCharacter::CheckForGrabableItem()
 {
+
+	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
+	if (playerController)
+	{
+		FHitResult Hit = GetHitResultInView();
+	
+
+		if (ABasePickupable* pickupable = Cast<ABasePickupable>(Hit.GetActor()))
+		{
+			playerController->CurrentPickupable = pickupable;
+		//	playerController->CurrentGrabable = Cast<ABaseGrabable>(pickupable);
+		}
+		if (ABaseGrabable* grabable = Cast<ABaseGrabable>(Hit.GetActor()))
+		{
+			playerController->CurrentGrabable = grabable;
+			playerController->CurrentGrabable->InFocus();
+
+
+			return;
+		}
+		// If we didn't hit anything, or thing we hit was on to a interactable set current interactable nullptr. 
+		else
+		{
+			if (playerController->CurrentGrabable != nullptr)
+			{
+				playerController->CurrentGrabable->NotInFocus();
+			}
+			playerController->CurrentPickupable = nullptr;
+			playerController->CurrentGrabable = nullptr;
+			return;
+		}
+
+	}
+
+}
+
+FHitResult ANBCharacter::GetHitResultInView()
+{
+	FVector CamLoc;
+	FRotator CamRot;
+	FHitResult Hit(ForceInit);
+
+	if (Controller != nullptr)
+	{
+		Controller->GetPlayerViewPoint(CamLoc, CamRot);
+		const FVector TraceStart = CamLoc;
+		const FVector Direction = CamRot.Vector();
+		const FVector TraceEnd = TraceStart + (Direction * MaxInteractDistance);
+
+		FCollisionQueryParams TraceParams(TEXT("TraceUsableActor"), true, this);
+		TraceParams.bTraceAsyncScene = true;
+		TraceParams.bReturnPhysicalMaterial = false;
+
+		/* Not tracing complex uses the rough collision instead making tiny objects easier to select. */
+		TraceParams.bTraceComplex = false;
+
+
+		GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
+
+	}
+
+	return Hit;
 }
 
 void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -82,6 +153,10 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANBCharacter::OnResetVR);
+
+	InputComponent->BindAction("HoldObject", IE_Pressed, this, &ANBCharacter::HoldObject);
+	InputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
+
 }
 
 
@@ -98,6 +173,29 @@ void ANBCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+}
+
+void ANBCharacter::HoldObject()
+{
+
+	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
+	if (playerController)
+	{
+		if (playerController->CurrentGrabable != nullptr)
+		{
+			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
+			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetActorLocation());
+			
+		}
+	}
+
+
+
+}
+
+void ANBCharacter::ReleaseObject()
+{
+	PhysicsHandle->ReleaseComponent();
 }
 
 void ANBCharacter::TurnAtRate(float Rate)

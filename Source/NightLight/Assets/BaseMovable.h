@@ -10,11 +10,11 @@ UCLASS()
 class NIGHTLIGHT_API ABaseMovable : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+protected:
 	// Sets default values for this actor's properties
 	ABaseMovable();
 
+public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
 		class USceneComponent* SceneComponent;
 
@@ -39,6 +39,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void WhenHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	virtual void WhenHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	
+	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+		virtual FVector GetLocationOfMesh();
+
 };

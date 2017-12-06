@@ -17,6 +17,9 @@ class ANBCharacter : public ABaseCharacter
 public:
 	ANBCharacter();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+		class UPhysicsHandleComponent * PhysicsHandle;
+
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseTurnRate;
@@ -27,6 +30,10 @@ public:
 	/** Mouse sensitivity. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		float MouseSensitivity;
+	/** Max Interact Distance.*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+		float MaxInteractDistance;
+
 	/** Rotate actor when forward button is pressed.. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bRotateActor;
@@ -62,13 +69,21 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+	/** HoldObject. */
+	void HoldObject();
+	/*ReleaseObject*/
+	void ReleaseObject();
+
 	/************************************************************************/
 	/* Pickups                                                              */
 	/************************************************************************/
 
-	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
-		void CheckForGrabalbeItem();
 
+	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+		void CheckForGrabableItem();
+
+	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+		FHitResult GetHitResultInView();
 
 public:
 	// Called every frame
