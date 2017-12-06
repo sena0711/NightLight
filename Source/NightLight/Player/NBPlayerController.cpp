@@ -9,3 +9,9 @@ ANBPlayerController::ANBPlayerController()
 {
 
 }
+
+void ANBPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+}
