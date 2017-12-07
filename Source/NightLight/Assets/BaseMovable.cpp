@@ -18,12 +18,13 @@ ABaseMovable::ABaseMovable()
 
 	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PickupMesh"));
 	PickupMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
-	PickupMesh->SetupAttachment(SceneComponent);
+	
 	PickupMesh->SetSimulatePhysics(true);
 	PickupMesh->BodyInstance.SetCollisionProfileName("PhysicsBody");
 	PickupMesh->SetNotifyRigidBodyCollision(true);
 	PickupMesh->OnComponentHit.AddDynamic(this, &ABaseMovable::WhenHit);
 
+	RootComponent = PickupMesh;
 	volumeMultiplierValue = 1000000.0;;
 
 }

@@ -15,8 +15,8 @@ protected:
 	ABaseMovable();
 
 public:	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
-		class USceneComponent* SceneComponent;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
+	//	class USceneComponent* SceneComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
 		class UStaticMeshComponent* PickupMesh;

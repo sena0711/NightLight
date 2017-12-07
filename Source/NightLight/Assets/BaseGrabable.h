@@ -19,6 +19,9 @@ protected:
 
 public:
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
+		class USceneComponent* SceneComponent;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bHoldable;
 
