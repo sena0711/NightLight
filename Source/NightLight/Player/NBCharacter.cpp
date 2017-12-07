@@ -198,9 +198,6 @@ void ANBCharacter::HoldObject()
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
 			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetActorLocation());
 			HoldingGrableActor = GrabbingMesh;
-			(GrabbingMesh->GetActorLocation)
-				vector2d
-			playerController->SetMouseLocation = 
 		}
 	}
 }
