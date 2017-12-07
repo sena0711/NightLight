@@ -15,6 +15,10 @@ class NIGHTLIGHT_API ABasePickupable : public ABaseGrabable
 	GENERATED_BODY()
 protected:
 		ABasePickupable();
+
+		//vectorlength/ volumeMultiplierValue
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+			FName InteractText;
 public:
 
 	//	UFUNCTION(BlueprintImplementableEvent)

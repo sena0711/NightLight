@@ -18,6 +18,11 @@ protected:
 	ABaseGrabable();
 
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bHoldable;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

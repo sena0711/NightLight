@@ -20,6 +20,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 		class UPhysicsHandleComponent * PhysicsHandle;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+		class ABaseGrabable * HoldingGrableActor;
+
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseTurnRate;
@@ -28,8 +31,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
 	/** Mouse sensitivity. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
-		float MouseSensitivity;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		float CameraSensitivity;
 	/** Max Interact Distance.*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		float MaxInteractDistance;
@@ -43,6 +46,7 @@ public:
 	/** Stops adding left mouse input */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bStopLeftMouseInput;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -84,6 +88,12 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
 		FHitResult GetHitResultInView();
+
+	UFUNCTION(BlueprintCallable, Category = "Calculation")
+		FVector GetViewPortCenter();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void DragObject();
 
 public:
 	// Called every frame

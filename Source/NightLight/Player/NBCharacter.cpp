@@ -31,7 +31,7 @@ ANBCharacter::ANBCharacter()
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
-	MouseSensitivity = 0.1f;
+	CameraSensitivity = 0.1f;
 	MaxInteractDistance = 500.0f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
@@ -129,6 +129,18 @@ FHitResult ANBCharacter::GetHitResultInView()
 	return Hit;
 }
 
+FVector ANBCharacter::GetViewPortCenter()
+{
+	FVector CamLoc;
+	FRotator CamRot;
+
+	if (Controller != nullptr)
+	{
+		Controller->GetPlayerViewPoint(CamLoc, CamRot);
+	}
+	return CamLoc;
+}
+
 void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	// Set up gameplay key bindings
@@ -154,8 +166,8 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANBCharacter::OnResetVR);
 
-	InputComponent->BindAction("HoldObject", IE_Pressed, this, &ANBCharacter::HoldObject);
-	InputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
+	PlayerInputComponent->BindAction("HoldObject", IE_Pressed, this, &ANBCharacter::HoldObject);
+	PlayerInputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
 
 }
 
@@ -185,17 +197,18 @@ void ANBCharacter::HoldObject()
 		{
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
 			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetActorLocation());
-			
+			HoldingGrableActor = GrabbingMesh;
+			(GrabbingMesh->GetActorLocation)
+				vector2d
+			playerController->SetMouseLocation = 
 		}
 	}
-
-
-
 }
 
 void ANBCharacter::ReleaseObject()
 {
 	PhysicsHandle->ReleaseComponent();
+	HoldingGrableActor = nullptr;
 }
 
 void ANBCharacter::TurnAtRate(float Rate)
@@ -212,7 +225,7 @@ void ANBCharacter::LookUpAtRate(float Rate)
 
 void ANBCharacter::AddMouseYawInput(float Value)
 {
-	float TurnValue = Value * MouseSensitivity;
+	float TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
@@ -246,7 +259,7 @@ void ANBCharacter::AddMouseYawInput(float Value)
 
 void ANBCharacter::AddMousePitchInput(float Value)
 {
-	float TurnValue = Value * MouseSensitivity;
+	float TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
@@ -293,11 +306,11 @@ void ANBCharacter::MoveRight(float Value)
 
 			// add movement in that direction
 			AddMovementInput(Direction, Value);
-
+			bRotateActor = true;
 		}
 		else
 		{
-			//	bUseControllerRotationYaw = true;
+			bRotateActor = false;
 		}
 	}
 

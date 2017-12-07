@@ -29,9 +29,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
 		class USoundBase* SoundHit;
-
-
-
+	
 	//vectorlength/ volumeMultiplierValue
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float volumeMultiplierValue;
