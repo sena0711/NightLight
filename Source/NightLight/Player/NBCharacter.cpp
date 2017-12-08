@@ -31,8 +31,13 @@ ANBCharacter::ANBCharacter()
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
-	CameraSensitivity = 0.1f;
+	CameraSensitivity = 0.5f;
+	DefaultCameraSensitivity = CameraSensitivity;
 	MaxInteractDistance = 500.0f;
+	HoldingCameraSensitivity = 0.1;
+	TurnValue = 1.0f;
+	HoldingObject = false;
+
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -69,17 +74,34 @@ void ANBCharacter::CheckForGrabableItem()
 	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
 	if (playerController)
 	{
-		FHitResult Hit = GetHitResultInView();
-	
 
+		FHitResult Hit = GetHitResultInView();
+		HitResultFromCameraCenter = Hit;
+		// trun off the current grabable
+		if (playerController->CurrentGrabable != nullptr)
+		{
+			if (playerController->CurrentGrabable != Cast<ABaseGrabable>(Hit.GetActor()))
+			{
+				playerController->CurrentGrabable->InFocus();
+			}
+		}
+	
 		if (ABasePickupable* pickupable = Cast<ABasePickupable>(Hit.GetActor()))
 		{
-			playerController->CurrentPickupable = pickupable;
-		//	playerController->CurrentGrabable = Cast<ABaseGrabable>(pickupable);
+			if (HoldingObject == false)
+			{
+				playerController->CurrentPickupable = pickupable;
+			}
+		
+			
+			//playerController->CurrentGrabable = Cast<ABaseGrabable>(pickupable);
 		}
 		if (ABaseGrabable* grabable = Cast<ABaseGrabable>(Hit.GetActor()))
 		{
-			playerController->CurrentGrabable = grabable;
+			if (HoldingObject == false)
+			{
+				playerController->CurrentGrabable = grabable;
+			}
 			playerController->CurrentGrabable->InFocus();
 
 
@@ -92,10 +114,16 @@ void ANBCharacter::CheckForGrabableItem()
 			{
 				playerController->CurrentGrabable->NotInFocus();
 			}
-			playerController->CurrentPickupable = nullptr;
-			playerController->CurrentGrabable = nullptr;
+			if (HoldingObject == false)
+			{
+				playerController->CurrentPickupable = nullptr;
+				playerController->CurrentGrabable = nullptr;
+			}
+	
 			return;
 		}
+	
+
 
 	}
 
@@ -129,16 +157,22 @@ FHitResult ANBCharacter::GetHitResultInView()
 	return Hit;
 }
 
-FVector ANBCharacter::GetViewPortCenter()
+void ANBCharacter::UpdateSlide(float Value)
 {
 	FVector CamLoc;
 	FRotator CamRot;
+	FVector PhysicsHandleLocation;
+	FRotator PhysicsHandleRotation;
 
 	if (Controller != nullptr)
 	{
 		Controller->GetPlayerViewPoint(CamLoc, CamRot);
+		const FVector TraceStart = CamLoc;
+		const FVector Direction = CamRot.Vector();
+
+		PhysicsHandle->GetTargetLocationAndRotation(PhysicsHandleLocation, PhysicsHandleRotation);
+		PhysicsHandle->SetTargetLocation((Direction * (Value* -1.0f)) + PhysicsHandleLocation);
 	}
-	return CamLoc;
 }
 
 void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -189,23 +223,25 @@ void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 
 void ANBCharacter::HoldObject()
 {
+	CameraSensitivity = HoldingCameraSensitivity;
 
 	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
 	if (playerController)
 	{
 		if (playerController->CurrentGrabable != nullptr)
 		{
+			HoldingObject = true;
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
-			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetActorLocation());
-			HoldingGrableActor = GrabbingMesh;
+			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetLocationOfMesh());
 		}
 	}
 }
 
 void ANBCharacter::ReleaseObject()
 {
+	CameraSensitivity = DefaultCameraSensitivity;
 	PhysicsHandle->ReleaseComponent();
-	HoldingGrableActor = nullptr;
+	HoldingObject = false;
 }
 
 void ANBCharacter::TurnAtRate(float Rate)
@@ -222,7 +258,7 @@ void ANBCharacter::LookUpAtRate(float Rate)
 
 void ANBCharacter::AddMouseYawInput(float Value)
 {
-	float TurnValue = Value * CameraSensitivity;
+	TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
