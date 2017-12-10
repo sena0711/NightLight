@@ -29,6 +29,8 @@ public:
 		float BaseLookUpRate;
 	/** Mouse sensitivity. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		float CameraPitchValue;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float CameraSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float DefaultCameraSensitivity;

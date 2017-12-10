@@ -36,6 +36,7 @@ ANBCharacter::ANBCharacter()
 	MaxInteractDistance = 500.0f;
 	HoldingCameraSensitivity = 0.1;
 	TurnValue = 1.0f;
+	CameraPitchValue = 0.0f;
 	HoldingObject = false;
 
 
@@ -292,6 +293,7 @@ void ANBCharacter::AddMouseYawInput(float Value)
 
 void ANBCharacter::AddMousePitchInput(float Value)
 {
+	CameraPitchValue = Value;
 	float TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
