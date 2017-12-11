@@ -9,6 +9,18 @@
 /**
  * 
  */
+
+UENUM(BlueprintType)
+enum class ELookingDirection : uint8
+{
+	LookingUp,
+
+	NoChange,
+
+	LookingDown,
+};
+
+
 UCLASS()
 class ANBCharacter : public ABaseCharacter
 {
@@ -27,10 +39,9 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
-	/** Mouse sensitivity. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
-		float CameraPitchValue;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		ELookingDirection LookingDirection;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float CameraSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float DefaultCameraSensitivity;

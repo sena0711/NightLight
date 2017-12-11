@@ -34,10 +34,10 @@ ANBCharacter::ANBCharacter()
 	CameraSensitivity = 0.5f;
 	DefaultCameraSensitivity = CameraSensitivity;
 	MaxInteractDistance = 500.0f;
-	HoldingCameraSensitivity = 0.1;
+	HoldingCameraSensitivity = CameraSensitivity*0.5;
 	TurnValue = 1.0f;
-	CameraPitchValue = 0.0f;
 	HoldingObject = false;
+	LookingDirection = ELookingDirection::NoChange;
 
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
@@ -224,7 +224,7 @@ void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 
 void ANBCharacter::HoldObject()
 {
-	CameraSensitivity = HoldingCameraSensitivity;
+//	CameraSensitivity = HoldingCameraSensitivity;
 
 	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
 	if (playerController)
@@ -293,7 +293,20 @@ void ANBCharacter::AddMouseYawInput(float Value)
 
 void ANBCharacter::AddMousePitchInput(float Value)
 {
-	CameraPitchValue = Value;
+	if (Value == 0.0)
+	{
+		LookingDirection = ELookingDirection::NoChange;
+	}
+	else if (Value > 0.0)
+	{
+		LookingDirection = ELookingDirection::LookingDown;
+	}
+	else if (Value < 0.0)
+	{
+		LookingDirection = ELookingDirection::LookingUp;
+	}
+
+
 	float TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
