@@ -23,7 +23,7 @@ public:
 		bool bHoldable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
-		class UStaticMeshComponent* HoldLocation;
+		class UStaticMeshComponent* SecondaryMesh;
 
 
 public:

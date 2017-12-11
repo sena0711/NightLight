@@ -13,10 +13,10 @@ ABaseGrabable::ABaseGrabable()
 
 	bHoldable = true;
 
-	HoldLocation = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HoldLocation"));
-	HoldLocation->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
-	HoldLocation->SetSimulatePhysics(false);
-	HoldLocation->SetupAttachment(PickupMesh);
+	SecondaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SecondaryMesh"));
+	SecondaryMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
+	SecondaryMesh->SetSimulatePhysics(false);
+	SecondaryMesh->SetupAttachment(PickupMesh);
 }
 // Called every frame
 void ABaseGrabable::Tick(float DeltaTime)
@@ -26,7 +26,7 @@ void ABaseGrabable::Tick(float DeltaTime)
 }
 FVector ABaseGrabable::GetLocationOfMesh()
 {
-	HoldLocation->GetComponentLocation();
+	SecondaryMesh->GetComponentLocation();
 
 	return GetActorLocation();
 }

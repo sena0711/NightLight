@@ -27,6 +27,12 @@ public:
 		class ABasePickupable* CurrentPickupable;
 
 public:
+	/************************************************************************/
+	/* Interaction With key press                                                      */
+	/************************************************************************/
+
+	UFUNCTION(BlueprintCallable, Category = "Interactable")
+		void Interact();
 
 
 protected:

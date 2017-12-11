@@ -9,6 +9,26 @@
 /**
  * 
  */
+
+UENUM(BlueprintType)
+enum class EItemType : uint8
+{
+	Key,
+
+	Health,
+
+	Battery,
+
+	Bullets,
+
+	Torch,
+
+	Weapon,
+
+	Quest,
+
+};
+
 UCLASS()
 class NIGHTLIGHT_API ABasePickupable : public ABaseGrabable
 {
@@ -19,7 +39,15 @@ protected:
 		//vectorlength/ volumeMultiplierValue
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 			FName InteractText;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+			EItemType ItemType;
+
 public:
+
+	//UFUNCTION(BlueprintImplementableEvent)
+	virtual void Interact(APlayerController* playerController);
+
 
 	//	UFUNCTION(BlueprintImplementableEvent)
 	//	void InFocus();

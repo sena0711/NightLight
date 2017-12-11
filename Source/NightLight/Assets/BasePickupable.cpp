@@ -10,6 +10,11 @@ ABasePickupable::ABasePickupable()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	InteractText = " F: to Pick up";
+	InteractText = "F:toPickup";
 
+}
+
+void ABasePickupable::Interact(APlayerController * playerController)
+{
+	Destroy();
 }
