@@ -27,6 +27,8 @@ enum class EItemType : uint8
 
 	Quest,
 
+	Instruction,
+
 };
 
 UCLASS()

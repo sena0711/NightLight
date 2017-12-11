@@ -39,6 +39,9 @@ void ABasePickupable::Interact(APlayerController * playerController)
 	case EItemType::Quest:
 		// add quest item to ui. 
 		break;
+	case EItemType::Instruction:
+		// add quest item to ui. 
+		break;
 	default:
 		break;
 	}
