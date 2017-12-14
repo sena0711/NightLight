@@ -16,6 +16,10 @@ public:
 	ABaseWeapon();
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
+		class ANBCharacter* MyPawn;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -23,6 +27,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
+	/* Set the Torch's owning pawn */
+	void SetOwningPawn(class ANBCharacter* NewOwner);
+
 	
 };

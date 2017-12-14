@@ -14,6 +14,7 @@
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "../Assets/BaseGrabable.h"
 #include "../Assets/BasePickupable.h"
+#include "../Assets/BaseTorch.h"
 #include "NBPlayerController.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -205,7 +206,22 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
 
 }
+void ANBCharacter::SpawnTorch()
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Instigator;
+	// if current weapon is empty assign current weapon
+	if (CurrentTorch == nullptr)
+	{
+		CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
+		AttachTorchToGun();
+		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
+		CurrentTorch->SetOwningPawn(this);
+	}
 
+
+}
 
 void ANBCharacter::OnResetVR()
 {

@@ -2,6 +2,7 @@
 
 #include "NBPlayerController.h"
 #include "Assets/BasePickupable.h"
+#include "NBCharacter.h"
 
 
 ANBPlayerController::ANBPlayerController()
@@ -19,6 +20,7 @@ void ANBPlayerController::Interact()
 
 void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem)
 {
+	ANBCharacter* playerCharacter = Cast<ANBCharacter>(GetCharacter());
 	EItemType eItemType = interactedItem->GetItemType();
 	switch (eItemType)
 	{
@@ -36,6 +38,10 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		break;
 	case EItemType::Torch:
 		//spawn torch
+		if (playerCharacter)
+		{
+			playerCharacter->SpawnTorch();
+		}
 		break;
 	case EItemType::Weapon:
 		//spawn weapon
@@ -50,6 +56,8 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		break;
 	}
 }
+
+
 
 void ANBPlayerController::SetupInputComponent()
 {

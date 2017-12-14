@@ -68,7 +68,13 @@ public:
 	/** HitResult saved as public so bp can use it.  */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		FHitResult HitResultFromCameraCenter;
+protected:
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+		class ABaseTorch *CurrentTorch;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		TSubclassOf <class ABaseTorch> TorchClass;
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -117,6 +123,12 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Torch")
+		void SpawnTorch();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void AttachTorchToGun();
 
 protected:
 	// APawn interface

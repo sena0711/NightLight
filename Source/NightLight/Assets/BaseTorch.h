@@ -21,6 +21,9 @@ public:
 
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
+		class ANBCharacter* MyPawn;
+
 	//Reduction of energy
 	FTimerHandle StartReducingEnergyTimerHandle;
 
@@ -46,5 +49,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "torch")
 		void DrainEnergy(float EnergyToAdd);
+
+	/* Set the Torch's owning pawn */
+	void SetOwningPawn(class ANBCharacter* NewOwner);
 	
 };

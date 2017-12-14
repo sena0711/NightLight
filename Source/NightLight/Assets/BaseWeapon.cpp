@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BaseWeapon.h"
+#include "Player/NBCharacter.h"
 
 
 // Sets default values
@@ -25,3 +26,11 @@ void ABaseWeapon::Tick(float DeltaTime)
 
 }
 
+void ABaseWeapon::SetOwningPawn(ANBCharacter * NewOwner)
+{
+	if (MyPawn != NewOwner)
+	{
+		Instigator = NewOwner;
+		MyPawn = NewOwner;
+	}
+}
