@@ -15,7 +15,22 @@ public:
 	// Sets default values for this actor's properties
 	ABaseTorch();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
+		class USpotLightComponent* TorchSpotlight;
+
+
+
 protected:
+	//Reduction of energy
+	FTimerHandle StartReducingEnergyTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		float MaxEnergy;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		float CurrentEnergy;
+
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -23,6 +38,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
+	UFUNCTION(BlueprintCallable, Category = "torch")
+		void GetEnergy();
+
+	UFUNCTION(BlueprintCallable, Category = "torch")
+		void AddEnergy(int EnergyToAdd);
+
+	UFUNCTION(BlueprintCallable, Category = "torch")
+		void DrainEnergy(float EnergyToAdd);
 	
 };

@@ -35,6 +35,8 @@ public:
 		FVector GetLocationOfMesh();
 
 	UFUNCTION(BlueprintImplementableEvent)
+		void WhenGrabbed();
+	UFUNCTION(BlueprintImplementableEvent)
 		void InFocus();
 
 	UFUNCTION(BlueprintImplementableEvent)

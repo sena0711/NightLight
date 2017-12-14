@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BasePickupable.h"
+#include "Player/NBPlayerController.h"
+
 
 
 
@@ -14,37 +16,13 @@ ABasePickupable::ABasePickupable()
 
 }
 
-void ABasePickupable::Interact(APlayerController * playerController)
+void ABasePickupable::Interact(class ANBPlayerController * playerController)
 {
-	switch (ItemType)
-	{
-	case EItemType::Key:
-		//add key to inventory
-		break;
-	case EItemType::Health:
-		// add health to inventory
-		break;
-	case EItemType::Battery:
-		// add battery to inventory
-		break;
-	case EItemType::Bullets:
-		// add bullets to held guns. 
-		break;
-	case EItemType::Torch:
-		// Spawn torch in hand. 
-		break;
-	case EItemType::Weapon:
-		// spawn weapon in hand
-		break;
-	case EItemType::Quest:
-		// add quest item to ui. 
-		break;
-	case EItemType::Instruction:
-		// add quest item to ui. 
-		break;
-	default:
-		break;
-	}
-
+	playerController->PossessInteractedItem(this);
 	Destroy();
+}
+
+EItemType ABasePickupable::GetItemType()
+{
+	return ItemType;
 }

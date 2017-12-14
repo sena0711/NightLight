@@ -6,9 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "NBPlayerController.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class NIGHTLIGHT_API ANBPlayerController : public APlayerController
 {
@@ -34,7 +32,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void Interact();
 
-
+	UFUNCTION(BlueprintCallable, Category = "Interactable")
+		void PossessInteractedItem(class ABasePickupable * interactedItem);
 protected:
 
 

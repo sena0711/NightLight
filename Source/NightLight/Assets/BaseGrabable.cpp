@@ -30,3 +30,4 @@ FVector ABaseGrabable::GetLocationOfMesh()
 
 	return GetActorLocation();
 }
+

@@ -4,32 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Assets/BaseGrabable.h"
+#include "../Core/TypeClass.h"
 #include "BasePickupable.generated.h"
 
 /**
  * 
  */
-
-UENUM(BlueprintType)
-enum class EItemType : uint8
-{
-	Key,
-
-	Health,
-
-	Battery,
-
-	Bullets,
-
-	Torch,
-
-	Weapon,
-
-	Quest,
-
-	Instruction,
-
-};
 
 UCLASS()
 class NIGHTLIGHT_API ABasePickupable : public ABaseGrabable
@@ -48,8 +28,9 @@ protected:
 public:
 
 	//UFUNCTION(BlueprintImplementableEvent)
-	virtual void Interact(APlayerController* playerController);
+	virtual void Interact(class ANBPlayerController* playerController);
 
+	EItemType GetItemType();
 
 	//	UFUNCTION(BlueprintImplementableEvent)
 	//	void InFocus();

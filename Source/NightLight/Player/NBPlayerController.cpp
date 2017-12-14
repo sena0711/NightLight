@@ -4,8 +4,6 @@
 #include "Assets/BasePickupable.h"
 
 
-
-
 ANBPlayerController::ANBPlayerController()
 {
 
@@ -16,6 +14,40 @@ void ANBPlayerController::Interact()
 	if (CurrentPickupable)
 	{
 		CurrentPickupable->Interact(this);
+	}
+}
+
+void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem)
+{
+	EItemType eItemType = interactedItem->GetItemType();
+	switch (eItemType)
+	{
+	case EItemType::Key:
+		//add key numbers
+		break;
+	case EItemType::Health:
+		//add health pack numbers
+		break;
+	case EItemType::Battery:
+		//add battery numbers
+		break;
+	case EItemType::Bullets:
+		//add bullet numbers
+		break;
+	case EItemType::Torch:
+		//spawn torch
+		break;
+	case EItemType::Weapon:
+		//spawn weapon
+		break;
+	case EItemType::Quest:
+
+		break;
+	case EItemType::Instruction:
+
+		break;
+	default:
+		break;
 	}
 }
 

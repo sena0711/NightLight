@@ -25,3 +25,15 @@ void ABaseTorch::Tick(float DeltaTime)
 
 }
 
+void ABaseTorch::GetEnergy()
+{
+}
+
+void ABaseTorch::AddEnergy(int EnergyToAdd)
+{
+}
+
+void ABaseTorch::DrainEnergy(float EnergyToAdd)
+{
+}
+
