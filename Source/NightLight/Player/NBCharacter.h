@@ -75,6 +75,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
 		TSubclassOf <class ABaseTorch> TorchClass;
+
+
 protected:
 
 	/** Resets HMD orientation in VR. */

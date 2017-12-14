@@ -124,9 +124,6 @@ void ANBCharacter::CheckForGrabableItem()
 	
 			return;
 		}
-	
-
-
 	}
 
 }

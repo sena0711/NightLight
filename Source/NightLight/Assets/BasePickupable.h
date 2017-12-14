@@ -25,15 +25,17 @@ protected:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 			EItemType ItemType;
 
+
+
 public:
 
 	//UFUNCTION(BlueprintImplementableEvent)
 	virtual void Interact(class ANBPlayerController* playerController);
 
 	EItemType GetItemType();
-
-	//	UFUNCTION(BlueprintImplementableEvent)
-	//	void InFocus();
+	//stack goes up.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		int32 NumberOfItems;
 
 	//UFUNCTION(BlueprintImplementableEvent)
 	//	void NotInFocus();

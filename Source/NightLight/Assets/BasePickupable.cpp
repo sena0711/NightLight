@@ -13,7 +13,7 @@ ABasePickupable::ABasePickupable()
 	PrimaryActorTick.bCanEverTick = true;
 
 	InteractText = "F:toPickup";
-
+	NumberOfItems = 1;
 }
 
 void ABasePickupable::Interact(class ANBPlayerController * playerController)

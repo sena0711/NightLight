@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Core/TypeClass.h"
 #include "NBPlayerController.generated.h"
 
 
@@ -34,13 +35,25 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void PossessInteractedItem(class ABasePickupable * interactedItem);
+	
 protected:
 
 
 	/************************************************************************/
 	/* Pickups                                                              */
 	/************************************************************************/
+	/** InventoryItems  */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		TArray<FInventoryItem> InventoryItems;
+	
+	UFUNCTION(BlueprintCallable, Category = "Interactable")
+		void AddItemToArray(EItemType eItemType, int32 addingStacks);
+
+	UFUNCTION(BlueprintCallable, Category = "Interactable")
+		int32 SearchInventoryItemsByType(EItemType eItemType);
+
 
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		virtual void SetupInputComponent() override;
+
 };

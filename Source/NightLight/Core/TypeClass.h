@@ -37,19 +37,19 @@ struct FInventoryItem
 
 public:
 
-	FInventoryItem()
-	{
-		MaxStackNumber = 30;
-	}
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FName ItemID; // Unique ID
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		EItemType ItemType; //itemtype
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 indexNumber; //
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 MaxStackNumber; //stack number
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 CurrentStackNumber; //
+
+
+								  //ureal requires oveloading the data. 
+		bool operator == (const FInventoryItem& Item) const
+		{
+			if (ItemType == Item.ItemType)
+				return true;
+			else return false;
+		}
 };
