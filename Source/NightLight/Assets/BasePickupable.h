@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Assets/BaseGrabable.h"
 #include "../Core/TypeClass.h"
+#include "../Assets/BaseWeapon.h"
 #include "BasePickupable.generated.h"
 
 /**
@@ -19,11 +20,14 @@ protected:
 		ABasePickupable();
 
 		//vectorlength/ volumeMultiplierValue
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			FName InteractText;
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			EItemType ItemType;
+		/*If the itemtype is weapon Which weapon*/
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+			TSubclassOf <class ABaseWeapon> WeaponToHold;
 
 
 
@@ -33,8 +37,10 @@ public:
 	virtual void Interact(class ANBPlayerController* playerController);
 
 	EItemType GetItemType();
-	//stack goes up.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+
+	TSubclassOf <class ABaseWeapon> GetWeaponToHold();
+	//stack goes up. 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 		int32 NumberOfItems;
 
 	//UFUNCTION(BlueprintImplementableEvent)

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "../Core/TypeClass.h"
 #include "BaseWeapon.generated.h"
 
 UCLASS()
@@ -19,6 +20,10 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
 		class ANBCharacter* MyPawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+		EWeaponType WeaponType;
+
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

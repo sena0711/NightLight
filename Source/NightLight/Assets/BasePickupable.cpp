@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BasePickupable.h"
+//#include "../Core/TypeClass.h"
+//#include "../Assets/BaseWeapon.h"
 #include "Player/NBPlayerController.h"
 
 
@@ -25,4 +27,9 @@ void ABasePickupable::Interact(class ANBPlayerController * playerController)
 EItemType ABasePickupable::GetItemType()
 {
 	return ItemType;
+}
+
+TSubclassOf<class ABaseWeapon> ABasePickupable::GetWeaponToHold()
+{
+	return WeaponToHold;
 }

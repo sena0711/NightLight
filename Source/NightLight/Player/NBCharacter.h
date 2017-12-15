@@ -71,6 +71,9 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+		class ABaseWeapon *CurrentWeapon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		class ABaseTorch *CurrentTorch;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
@@ -128,6 +131,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Torch")
 		void SpawnTorch();
+	UFUNCTION(BlueprintCallable, Category = "Torch")
+		void SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass);
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void AttachTorchToGun();

@@ -219,7 +219,22 @@ void ANBCharacter::SpawnTorch()
 
 
 }
+void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Instigator;
+	// if current weapon is empty assign current weapon
+	if (CurrentWeapon == nullptr)
+	{
+		CurrentWeapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass, SpawnParams);
+		//AttachTorchToGun();
+		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
+		CurrentWeapon->SetOwningPawn(this);
+	}
 
+
+}
 void ANBCharacter::OnResetVR()
 {
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();

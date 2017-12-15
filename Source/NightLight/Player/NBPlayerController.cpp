@@ -51,6 +51,15 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		break;
 	case EItemType::Weapon:
 		//spawn weapon
+		if (playerCharacter)
+		{
+			if (CurrentPickupable->GetWeaponToHold())
+			{
+				
+
+				playerCharacter->SpawnWeapon(CurrentPickupable->GetWeaponToHold());
+			}		
+		}
 		break;
 	case EItemType::Quest:
 		
@@ -65,7 +74,7 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks)
 {
 	//initialize item to add.
-	int32 index;
+	int32 index = 0;
 	FInventoryItem itemToAdd;
 	itemToAdd.ItemType = eItemType;
 	itemToAdd.CurrentStackNumber = addingStacks;
@@ -79,12 +88,11 @@ void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks
 	//if array is not empty search the array get index and incurse stack number
 	else
 	{
-		if (bSearchReturnedNull == false)
-		{
-			index = SearchInventoryItemsByType(eItemType);
-			int32 stackNumber = InventoryItems[index].CurrentStackNumber;
-			InventoryItems[index].CurrentStackNumber = stackNumber + addingStacks;
-		}
+	
+		index = SearchInventoryItemsByType(eItemType);
+		int32 stackNumber = InventoryItems[index].CurrentStackNumber;
+		InventoryItems[index].CurrentStackNumber = stackNumber + addingStacks;
+		
 	}
 	//set index number. 
 	InventoryItems[index].indexNumber = index;

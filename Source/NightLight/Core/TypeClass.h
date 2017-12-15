@@ -3,6 +3,16 @@
 #include "Engine/DataTable.h"
 #include "TypeClass.generated.h"
 
+UENUM()
+enum class EWeaponType : uint8
+{
+	/*Pistol like weapons*/
+	EBullet,
+	/*Shotgun like weapons*/
+	ESpread,
+	/*Misslie like weapons*/
+	EProjectile,
+};
 
 UENUM(BlueprintType)
 enum class EItemType : uint8
