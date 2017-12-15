@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
 		class ABasePickupable* CurrentPickupable;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
+		bool bSearchReturnedNull;
+
 public:
 	/************************************************************************/
 	/* Interaction With key press                                                      */
