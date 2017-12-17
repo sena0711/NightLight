@@ -57,18 +57,26 @@ public:
 	/** Rotate actor when forward button is pressed.. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bRotateActor;
-	/** Stops adding right mouse input. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
-		bool bStopRightMouseInput;
-	/** Stops adding left mouse input */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
-		bool bStopLeftMouseInput;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool HoldingObject;
 	/** HitResult saved as public so bp can use it.  */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		FHitResult HitResultFromCameraCenter;
 protected:
+	/** Stops adding right mouse input. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bStopRightMouseInput;
+	/** Stops adding left mouse input */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bStopLeftMouseInput;
+
+	/** Stops adding right mouse input. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bStopUpMouseInput;
+	/** Stops adding left mouse input */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bStopDownMouseInput;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		class ABaseWeapon *CurrentWeapon;

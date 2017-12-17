@@ -55,8 +55,6 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		{
 			if (CurrentPickupable->GetWeaponToHold())
 			{
-				
-
 				playerCharacter->SpawnWeapon(CurrentPickupable->GetWeaponToHold());
 			}		
 		}
