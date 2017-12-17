@@ -43,7 +43,7 @@ void ABaseTorch::DrainEnergy(float EnergyToAdd)
 
 void ABaseTorch::SetOwningPawn(ANBCharacter * NewOwner)
 {
-	if (MyPawn != NewOwner)
+	if (MyPawn == NewOwner)
 	{
 		Instigator = NewOwner;
 		MyPawn = NewOwner;

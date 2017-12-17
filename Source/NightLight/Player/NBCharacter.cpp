@@ -211,15 +211,20 @@ void ANBCharacter::SpawnTorch()
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = Instigator;
 	// if current weapon is empty assign current weapon
-	if (CurrentTorch == nullptr)
+	if (TorchClass != nullptr)
 	{
-		CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
-		AttachTorchToGun();
-		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
-		CurrentTorch->SetOwningPawn(this);
+		if (CurrentTorch == nullptr)
+		{
+			CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
+			AttachTorchToGun();
+			//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
+			CurrentTorch->SetOwningPawn(this);
+		}
 	}
-
-
+	else
+	{
+		//Torch class in player character bp needs to be set. 
+	}
 }
 void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
 {
