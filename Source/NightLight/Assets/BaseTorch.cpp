@@ -11,6 +11,9 @@ ABaseTorch::ABaseTorch()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	MaxEnergy = 100.0f;
+	CurrentEnergy = MaxEnergy;
+
 
 	TorchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TorchMesh"));
 	TorchMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
@@ -25,6 +28,8 @@ ABaseTorch::ABaseTorch()
 	TorchSpotlight->SetupAttachment(TorchMesh);
 	TorchSpotlight->SetRelativeRotation(FRotator(0, 0, 0));
 	TorchSpotlight->SetRelativeLocation(FVector(0, 0, -0));
+
+
 }
 
 // Called when the game starts or when spawned
