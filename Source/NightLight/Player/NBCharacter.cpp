@@ -201,8 +201,12 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANBCharacter::OnResetVR);
 
+	// Essential GamePlay functionality
 	PlayerInputComponent->BindAction("HoldObject", IE_Pressed, this, &ANBCharacter::HoldObject);
 	PlayerInputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ANBCharacter::HoldFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ANBCharacter::ReleaseFire);
 
 }
 void ANBCharacter::SpawnTorch()
@@ -277,6 +281,23 @@ void ANBCharacter::ReleaseObject()
 	CameraSensitivity = DefaultCameraSensitivity;
 	PhysicsHandle->ReleaseComponent();
 	HoldingObject = false;
+}
+
+void ANBCharacter::HoldFire()
+{
+	PlayAnimation(FireAnimation);
+}
+
+void ANBCharacter::ReleaseFire()
+{
+}
+
+void ANBCharacter::PlayAnimation(class UAnimMontage* MontageToPlay)
+{
+	if (MontageToPlay)
+	{
+		PlayAnimMontage(MontageToPlay);
+	}
 }
 
 void ANBCharacter::TurnAtRate(float Rate)

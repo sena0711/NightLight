@@ -88,6 +88,33 @@ protected:
 		TSubclassOf <class ABaseTorch> TorchClass;
 
 
+	/************************************************************************/
+	/* Anim use                                                           */
+	/************************************************************************/
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* ReloadAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* EquipAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* FireAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* DrawingAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* PickingUpAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* PushingAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* NoClipAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UAnimMontage* EndCrankAnimation;
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -119,11 +146,21 @@ protected:
 	/*ReleaseObject*/
 	void ReleaseObject();
 
+	/** HoldObject. */
+	void HoldFire();
+	/*ReleaseObject*/
+	void ReleaseFire();
+	/************************************************************************/
+	/* Play Animation                                                        */
+	/************************************************************************/
+
+	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+		void PlayAnimation(class UAnimMontage* FireAnimation);
+
 	/************************************************************************/
 	/* Pickups                                                              */
 	/************************************************************************/
-
-
+	
 	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
 		void CheckForGrabableItem();
 
