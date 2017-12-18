@@ -19,6 +19,8 @@ public:
 		class USpotLightComponent* TorchSpotlight;
 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
+		class UStaticMeshComponent* TorchMesh;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")

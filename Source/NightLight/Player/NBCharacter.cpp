@@ -217,7 +217,7 @@ void ANBCharacter::SpawnTorch()
 		{
 			CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
 			AttachTorchToGun();
-			//CurrentTorch->SetOwningPawn(this);
+			CurrentTorch->SetOwningPawn(this);
 		}
 	}
 	else
@@ -235,7 +235,7 @@ void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
 	{
 		CurrentWeapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass, SpawnParams);
 		AttachTorchToGun();
-	//	CurrentWeapon->SetOwningPawn(this);
+		CurrentWeapon->SetOwningPawn(this);
 	}
 
 

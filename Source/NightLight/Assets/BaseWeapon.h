@@ -16,6 +16,9 @@ public:
 	// Sets default values for this actor's properties
 	ABaseWeapon();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
+		class USkeletalMeshComponent* WeaponMesh;
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")

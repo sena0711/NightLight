@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BaseTorch.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/SpotLightComponent.h"
 #include "Player/NBCharacter.h"
 
@@ -10,7 +11,20 @@ ABaseTorch::ABaseTorch()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	TorchSpotlight = CreateDefaultSubobject<USpotLightComponent>(TEXT("WeaponSpotlight"));
+
+	TorchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TorchMesh"));
+	TorchMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
+	TorchMesh->SetSimulatePhysics(true);
+	TorchMesh->BodyInstance.SetCollisionProfileName("PhysicsBody");
+	TorchMesh->SetNotifyRigidBodyCollision(true);
+	TorchMesh->SetCollisionObjectType(ECC_WorldDynamic);
+	TorchMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	TorchMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
+	TorchMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+
+	TorchSpotlight = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLight"));
+	TorchSpotlight->SetupAttachment(TorchMesh);
 	TorchSpotlight->SetRelativeRotation(FRotator(0, 0, 0));
 	TorchSpotlight->SetRelativeLocation(FVector(0, 0, -0));
 }
