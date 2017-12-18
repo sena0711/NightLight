@@ -217,8 +217,7 @@ void ANBCharacter::SpawnTorch()
 		{
 			CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
 			AttachTorchToGun();
-			//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
-			CurrentTorch->SetOwningPawn(this);
+			//CurrentTorch->SetOwningPawn(this);
 		}
 	}
 	else
@@ -235,9 +234,8 @@ void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
 	if (CurrentWeapon == nullptr)
 	{
 		CurrentWeapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass, SpawnParams);
-		//AttachTorchToGun();
-		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
-		CurrentWeapon->SetOwningPawn(this);
+		AttachTorchToGun();
+	//	CurrentWeapon->SetOwningPawn(this);
 	}
 
 
