@@ -155,7 +155,7 @@ protected:
 	/************************************************************************/
 
 	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
-		void PlayAnimation(class UAnimMontage* FireAnimation);
+		void PlayAnimation(class UAnimMontage* montageToPlay);
 
 	/************************************************************************/
 	/* Pickups                                                              */

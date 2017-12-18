@@ -285,20 +285,21 @@ void ANBCharacter::ReleaseObject()
 
 void ANBCharacter::HoldFire()
 {
-	PlayAnimation(FireAnimation);
+
 }
 
 void ANBCharacter::ReleaseFire()
 {
 }
 
-void ANBCharacter::PlayAnimation(class UAnimMontage* MontageToPlay)
+void ANBCharacter::PlayAnimation(UAnimMontage * montageToPlay)
 {
-	if (MontageToPlay)
+	if (montageToPlay)
 	{
-		PlayAnimMontage(MontageToPlay);
+		PlayAnimMontage(montageToPlay);
 	}
 }
+
 
 void ANBCharacter::TurnAtRate(float Rate)
 {

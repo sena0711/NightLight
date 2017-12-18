@@ -27,6 +27,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 		EWeaponType WeaponType;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
+		UTexture2D* WeaponImage2D;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,6 +41,7 @@ public:
 
 	/* Set the Torch's owning pawn */
 	void SetOwningPawn(class ANBCharacter* NewOwner);
+
 
 	
 };
