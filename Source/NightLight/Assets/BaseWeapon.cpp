@@ -44,3 +44,4 @@ void ABaseWeapon::SetOwningPawn(ANBCharacter * NewOwner)
 		MyPawn = NewOwner;
 	}
 }
+

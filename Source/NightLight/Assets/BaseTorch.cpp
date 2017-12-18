@@ -14,8 +14,6 @@ ABaseTorch::ABaseTorch()
 
 	TorchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TorchMesh"));
 	TorchMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
-	TorchMesh->SetSimulatePhysics(true);
-	TorchMesh->BodyInstance.SetCollisionProfileName("PhysicsBody");
 	TorchMesh->SetNotifyRigidBodyCollision(true);
 	TorchMesh->SetCollisionObjectType(ECC_WorldDynamic);
 	TorchMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
