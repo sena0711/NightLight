@@ -48,6 +48,8 @@ ANBCharacter::ANBCharacter()
 	bRotateActor = false;
 	bStopRightMouseInput = false;
 	bStopLeftMouseInput = false;
+	bStopUpMouseInput = false;
+	bStopDownMouseInput = false;
 
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
@@ -209,15 +211,19 @@ void ANBCharacter::SpawnTorch()
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = Instigator;
 	// if current weapon is empty assign current weapon
-	if (CurrentTorch == nullptr)
+	if (TorchClass != nullptr)
 	{
-		CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
-		AttachTorchToGun();
-		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
-		CurrentTorch->SetOwningPawn(this);
+		if (CurrentTorch == nullptr)
+		{
+			CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
+			AttachTorchToGun();
+			//CurrentTorch->SetOwningPawn(this);
+		}
 	}
-
-
+	else
+	{
+		//Torch class in player character bp needs to be set. 
+	}
 }
 void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
 {
@@ -228,9 +234,8 @@ void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)
 	if (CurrentWeapon == nullptr)
 	{
 		CurrentWeapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass, SpawnParams);
-		//AttachTorchToGun();
-		//SensingComponentPawn->AttachToComponent(FPSCharacterArmMesh, FAttachmentTransformRules::SnapToTargetIncludingScale, "Sense_Socket");
-		CurrentWeapon->SetOwningPawn(this);
+		AttachTorchToGun();
+	//	CurrentWeapon->SetOwningPawn(this);
 	}
 
 
@@ -334,13 +339,36 @@ void ANBCharacter::AddMousePitchInput(float Value)
 	{
 		LookingDirection = ELookingDirection::LookingUp;
 	}
-
-
+	
 	float TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{
 		APlayerController* const PC = CastChecked<APlayerController>(Controller);
-		PC->AddPitchInput(TurnValue);
+		//Looking Down
+		if (TurnValue > 0.0)
+		{
+			if (bStopDownMouseInput)
+			{
+
+			}
+			else
+			{
+				PC->AddPitchInput(TurnValue);
+			}
+
+		}
+		//Looking Up
+		else
+		{
+			if (bStopUpMouseInput)
+			{
+
+			}
+			else
+			{
+				PC->AddPitchInput(TurnValue);
+			}
+		}
 	}
 }
 
@@ -383,12 +411,9 @@ void ANBCharacter::MoveRight(float Value)
 
 			// add movement in that direction
 			AddMovementInput(Direction, Value);
-			bRotateActor = true;
+			
 		}
-		else
-		{
-			bRotateActor = false;
-		}
+
 	}
 
 }
