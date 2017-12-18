@@ -3,6 +3,7 @@
 #include "BaseTorch.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SpotLightComponent.h"
+#include "TimerManager.h"
 #include "Player/NBCharacter.h"
 
 // Sets default values
@@ -13,7 +14,8 @@ ABaseTorch::ABaseTorch()
 
 	MaxEnergy = 100.0f;
 	CurrentEnergy = MaxEnergy;
-
+	EnergyReductionRate = 0.5f;
+	ReductionTimerRate = 0.5f;
 
 	TorchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TorchMesh"));
 	TorchMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
@@ -36,7 +38,7 @@ ABaseTorch::ABaseTorch()
 void ABaseTorch::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetVisiblity(true);
 }
 
 // Called every frame
@@ -54,8 +56,48 @@ void ABaseTorch::AddEnergy(int EnergyToAdd)
 {
 }
 
-void ABaseTorch::DrainEnergy(float EnergyToAdd)
+void ABaseTorch::DrainEnergy()
 {
+	if (CurrentEnergy <= 0)
+	{
+	//	GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
+		CurrentEnergy = 0;
+	}
+	else
+	{
+		CurrentEnergy = CurrentEnergy - EnergyReductionRate;
+		
+	}
+}
+
+void ABaseTorch::SetVisiblity(bool bVisiblity)
+{
+	// if there is energy
+	if (CurrentEnergy > 0.0f)
+	{
+		TorchSpotlight->ToggleVisibility(bVisiblity);
+
+		//if torch is on drain energy.
+		if (bVisiblity == true)
+		{
+			GetWorldTimerManager().SetTimer(StartReducingEnergyTimerHandle, this, &ABaseTorch::DrainEnergy, ReductionTimerRate, true);
+		}
+		else // if torch is off stop draining energy.
+		{
+			GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
+		}
+	}
+	else // if there is no energy left toggle visiblity.
+	{
+		TorchSpotlight->ToggleVisibility(false);
+		GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
+	}
+}
+
+bool ABaseTorch::GetVisiblity()
+{
+	IsTorchOn = TorchSpotlight->IsVisible();
+	return IsTorchOn;
 }
 
 void ABaseTorch::SetOwningPawn(ANBCharacter * NewOwner)

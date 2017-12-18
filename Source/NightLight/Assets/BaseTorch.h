@@ -35,7 +35,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
 		float CurrentEnergy;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		float EnergyReductionRate;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		float ReductionTimerRate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		bool IsTorchOn;
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -50,7 +57,13 @@ public:
 		void AddEnergy(int EnergyToAdd);
 
 	UFUNCTION(BlueprintCallable, Category = "torch")
-		void DrainEnergy(float EnergyToAdd);
+		void DrainEnergy();
+
+	UFUNCTION(BlueprintCallable, Category = "torch")
+		void SetVisiblity(bool bVisiblity);
+
+	UFUNCTION(BlueprintCallable, Category = "torch")
+		bool GetVisiblity();
 
 	/* Set the Torch's owning pawn */
 	void SetOwningPawn(class ANBCharacter* NewOwner);
