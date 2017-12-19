@@ -78,6 +78,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bStopDownMouseInput;
 
+	/** current firing state */
+	uint8 bPressingFire : 1;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		class ABaseWeapon *CurrentWeapon;
 

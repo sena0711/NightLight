@@ -38,6 +38,7 @@ ANBCharacter::ANBCharacter()
 	HoldingCameraSensitivity = CameraSensitivity*0.5;
 	TurnValue = 1.0f;
 	HoldingObject = false;
+	bPressingFire = false;
 	LookingDirection = ELookingDirection::NoChange;
 
 
@@ -283,11 +284,26 @@ void ANBCharacter::ReleaseObject()
 
 void ANBCharacter::PressFire()
 {
-
+	if (!bPressingFire)
+	{
+		bPressingFire = true;
+		if (CurrentWeapon)
+		{
+			//CurrentWeapon->StartFire();
+		}
+	}
 }
 
 void ANBCharacter::ReleaseFire()
 {
+	if (bPressingFire)
+	{
+		bPressingFire = false;
+		if (CurrentWeapon)
+		{
+			//CurrentWeapon->StopFire();
+		}
+	}
 }
 
 void ANBCharacter::PlayAnimation(UAnimMontage * montageToPlay)
