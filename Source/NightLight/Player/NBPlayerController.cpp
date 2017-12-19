@@ -125,14 +125,14 @@ void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks
 	{
 		index = InventoryItems.Add(itemToAdd);
 	}
-	//if array is not empty search the array get index and incurse stack number
+	//if array is not empty
 	else
 	{
-	
+		// search the array get index 
 		index = SearchInventoryItemsByType(eItemType);
-		if (index == NULL)
+		if (index == NOTEXISTING)
 		{
-			InventoryItems.Add(itemToAdd);
+			index = InventoryItems.Add(itemToAdd);
 		}
 		else
 		{
@@ -149,7 +149,7 @@ void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks
 int32 ANBPlayerController::SearchInventoryItemsByType(EItemType eItemType)
 {
 	bSearchReturnedNull = true;
-	int32 index = NULL;
+	int32 index = NOTEXISTING;
 	//search and return the index of searched array if not found it will return null
 	for (int32 b = 0; b < InventoryItems.Num(); b++)
 	{

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#define NOTEXISTING 100
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Core/TypeClass.h"
