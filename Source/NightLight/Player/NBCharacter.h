@@ -147,7 +147,7 @@ protected:
 	void ReleaseObject();
 
 	/** HoldObject. */
-	void HoldFire();
+	void PressFire();
 	/*ReleaseObject*/
 	void ReleaseFire();
 	/************************************************************************/

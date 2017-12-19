@@ -197,7 +197,7 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("HoldObject", IE_Pressed, this, &ANBCharacter::HoldObject);
 	PlayerInputComponent->BindAction("HoldObject", IE_Released, this, &ANBCharacter::ReleaseObject);
 
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ANBCharacter::HoldFire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ANBCharacter::PressFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ANBCharacter::ReleaseFire);
 
 	//PlayerInputComponent->BindAction("PreWeapon", IE_Pressed, this, &ANBCharacter::HoldFire);
@@ -281,7 +281,7 @@ void ANBCharacter::ReleaseObject()
 	HoldingObject = false;
 }
 
-void ANBCharacter::HoldFire()
+void ANBCharacter::PressFire()
 {
 
 }
