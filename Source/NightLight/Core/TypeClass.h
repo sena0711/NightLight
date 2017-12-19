@@ -23,7 +23,9 @@ enum class EItemType : uint8
 
 	Battery,
 
-	Bullets,
+	StandardBullets,
+
+	LightBullets,
 
 	Torch,
 

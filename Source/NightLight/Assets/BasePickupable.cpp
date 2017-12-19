@@ -14,14 +14,15 @@ ABasePickupable::ABasePickupable()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	InteractText = "F:toPickup";
+	InteractText = "F :to Pickup";
+	NameOfItem = "Item";
 	NumberOfItems = 1;
+	PickedUpValue = 50;
 }
 
 void ABasePickupable::Interact(class ANBPlayerController * playerController)
 {
 	playerController->PossessInteractedItem(this);
-	Destroy();
 }
 
 EItemType ABasePickupable::GetItemType()
@@ -32,4 +33,46 @@ EItemType ABasePickupable::GetItemType()
 TSubclassOf<class ABaseWeapon> ABasePickupable::GetWeaponToHold()
 {
 	return WeaponToHold;
+}
+
+float ABasePickupable::GetPickedUpValue()
+{
+	return PickedUpValue;
+}
+
+FName ABasePickupable::GetNameOfItem()
+{
+	switch (ItemType)
+	{
+	case EItemType::Key:
+		NameOfItem = "Key";
+		break;
+	case EItemType::Health:
+		NameOfItem = "Health";
+		break;
+	case EItemType::Battery:
+		NameOfItem = "Battery";
+		break;
+	case EItemType::StandardBullets:
+		NameOfItem = "StandardBullets";
+		break;
+	case EItemType::LightBullets:
+		NameOfItem = "LightBullets";
+		break;
+	case EItemType::Torch:
+		NameOfItem = "Torch";
+		break;
+	case EItemType::Weapon:
+		NameOfItem = "Weapon";
+		break;
+	case EItemType::Quest:
+		NameOfItem = "Quest";
+		break;
+	case EItemType::Instruction:
+		NameOfItem = "Instruction";
+		break;
+	default:
+		break;
+	}
+	return NameOfItem;
 }

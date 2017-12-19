@@ -24,23 +24,39 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 	ANBCharacter* playerCharacter = Cast<ANBCharacter>(GetCharacter());
 	EItemType eItemType = interactedItem->GetItemType();
 	int32 stackNumber = interactedItem->NumberOfItems;
+	bool bIsHealthGained = false;
 
 	switch (eItemType)
 	{
 	case EItemType::Key:
 		//add key numbers
 		AddItemToArray(eItemType, stackNumber);
+		interactedItem->Destroy();
 		break;
 	case EItemType::Health:
-		//add health pack numbers
-		AddItemToArray(eItemType, stackNumber);
+		//gain health if succeeded the item will be destoryed otherwise nothing happens. 
+		bIsHealthGained = playerCharacter->GainHealth(interactedItem->GetPickedUpValue());
+		if (bIsHealthGained == true)
+		{
+			interactedItem->Destroy();
+		}
+		//AddItemToArray(eItemType, stackNumber);
 		break;
 	case EItemType::Battery:
 		//add battery numbers
 		AddItemToArray(eItemType, stackNumber);
+		interactedItem->Destroy();
 		break;
-	case EItemType::Bullets:
+	case EItemType::StandardBullets:
 		//add bullet numbers
+		AddItemToArray(eItemType, stackNumber);
+		interactedItem->Destroy();
+		break;
+
+	case EItemType::LightBullets:
+		//add bullet numbers
+		AddItemToArray(eItemType, stackNumber);
+		interactedItem->Destroy();
 		break;
 	case EItemType::Torch:
 		// assigns current torch and spawns torch
@@ -48,6 +64,7 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		{
 			playerCharacter->SpawnTorch();
 		}
+		interactedItem->Destroy();
 		break;
 	case EItemType::Weapon:
 		//spawn weapon
@@ -58,6 +75,7 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 				playerCharacter->SpawnWeapon(CurrentPickupable->GetWeaponToHold());
 			}		
 		}
+		interactedItem->Destroy();
 		break;
 	case EItemType::Quest:
 		
