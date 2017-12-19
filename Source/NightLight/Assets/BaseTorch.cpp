@@ -60,7 +60,7 @@ void ABaseTorch::DrainEnergy()
 {
 	if (CurrentEnergy <= 0)
 	{
-	//	GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
+		GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
 		CurrentEnergy = 0;
 	}
 	else

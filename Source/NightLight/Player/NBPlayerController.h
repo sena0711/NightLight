@@ -28,6 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
 		bool bSearchReturnedNull;
 
+
+
 public:
 	/************************************************************************/
 	/* Interaction With key press                                                      */
@@ -38,17 +40,40 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void PossessInteractedItem(class ABasePickupable * interactedItem);
-	
+
+
+	UFUNCTION(BlueprintCallable, Category = "Warning")
+		void SetWarningText(FName fWarningText, float flength);
+
+	UFUNCTION(BlueprintCallable, Category = "Warning")
+		void UnSetWarningText();
+
+	UFUNCTION(BlueprintCallable, Category = "Warning")
+		bool GetbIsWarningOn();
+
+	UFUNCTION(BlueprintCallable, Category = "Warning")
+		FName GetWarningText();
 protected:
 
+
+
+	//ShowWarning On screen
+	FTimerHandle ShowWarningOnScreenTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Warning)
+		bool bIsWarningOn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Warning)
+		FName WarningText;
 
 	/************************************************************************/
 	/* Pickups                                                              */
 	/************************************************************************/
+
 	/** InventoryItems  */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interactable)
 		TArray<FInventoryItem> InventoryItems;
-	
+
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void AddItemToArray(EItemType eItemType, int32 addingStacks);
 

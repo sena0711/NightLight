@@ -4,11 +4,14 @@
 #include "Assets/BasePickupable.h"
 #include "Core/TypeClass.h"
 #include "NBCharacter.h"
+#include "TimerManager.h"
 
 
 ANBPlayerController::ANBPlayerController()
 {
 	bSearchReturnedNull = true;
+	bIsWarningOn = true;
+	WarningText = "WriteWarningText";
 }
 
 void ANBPlayerController::Interact()
@@ -86,6 +89,27 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 	default:
 		break;
 	}
+}
+void ANBPlayerController::SetWarningText(FName fWarningText, float flength = 1.0)
+{
+	bIsWarningOn = true;
+	WarningText = fWarningText;
+
+	GetWorldTimerManager().SetTimer(ShowWarningOnScreenTimerHandle, this, &ANBPlayerController::UnSetWarningText, flength, false);
+}
+void ANBPlayerController::UnSetWarningText()
+{
+	GetWorldTimerManager().ClearTimer(ShowWarningOnScreenTimerHandle);
+
+	bIsWarningOn = false;
+}
+bool ANBPlayerController::GetbIsWarningOn()
+{
+	return bIsWarningOn;
+}
+FName ANBPlayerController::GetWarningText()
+{
+	return WarningText;
 }
 void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks)
 {
