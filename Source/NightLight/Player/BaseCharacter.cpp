@@ -9,6 +9,7 @@ ABaseCharacter::ABaseCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	bIsAlive = true;
 	MaxHealth = 100.0f;
 	CurrentHealth = MaxHealth;
 }
@@ -32,5 +33,36 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+bool ABaseCharacter::GetbIsAlive()
+{
+	if (CurrentHealth > 0)
+	{
+		bIsAlive = true;
+	}
+	else
+	{
+		bIsAlive = false;
+	}
+
+	return bIsAlive;
+}
+
+bool ABaseCharacter::GainHealth(float GainValue)
+{
+	if (CurrentHealth < MaxHealth)
+	{
+		CurrentHealth = CurrentHealth + GainValue;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void ABaseCharacter::ReduceHealth(float ReductionValue)
+{
 }
 

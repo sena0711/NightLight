@@ -21,12 +21,12 @@ protected:
 	virtual void BeginPlay() override;
 
 	/** Status. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
 		float CurrentHealth;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
 		float MaxHealth;
 	/** Rotate actor when forward button is pressed.. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Status)
 		bool bIsAlive;
 
 public:	
@@ -36,6 +36,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
+	UFUNCTION(BlueprintCallable, Category = "Status")
+		bool GetbIsAlive();
+
+	UFUNCTION(BlueprintCallable, Category = "Status")
+		bool GainHealth(float GainValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Status")
+		void ReduceHealth(float ReductionValue);
+
+
 };

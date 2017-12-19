@@ -24,12 +24,16 @@ protected:
 			FName InteractText;
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+			FName NameOfItem;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			EItemType ItemType;
 		/*If the itemtype is weapon Which weapon*/
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			TSubclassOf <class ABaseWeapon> WeaponToHold;
-
-
+		/*Related Value - float*/
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+			float PickedUpValue;
 
 public:
 
@@ -42,6 +46,12 @@ public:
 	//stack goes up. 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 		int32 NumberOfItems;
+
+	UFUNCTION(BlueprintCallable, Category = "Status")
+		float GetPickedUpValue();
+
+	UFUNCTION(BlueprintCallable, Category = "Status")
+		FName GetNameOfItem();
 
 	//UFUNCTION(BlueprintImplementableEvent)
 	//	void NotInFocus();
