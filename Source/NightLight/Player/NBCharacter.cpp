@@ -81,12 +81,12 @@ void ANBCharacter::CheckForGrabableItem()
 
 		FHitResult Hit = GetHitResultInView();
 		HitResultFromCameraCenter = Hit;
-		// trun off the current grabable
+		//// trun off the current grabable
 		if (playerController->CurrentGrabable != nullptr)
 		{
 			if (playerController->CurrentGrabable != Cast<ABaseGrabable>(Hit.GetActor()))
 			{
-				playerController->CurrentGrabable->InFocus();
+				playerController->CurrentGrabable->NotInFocus();
 			}
 		}
 	
@@ -123,8 +123,6 @@ void ANBCharacter::CheckForGrabableItem()
 				playerController->CurrentPickupable = nullptr;
 				playerController->CurrentGrabable = nullptr;
 			}
-	
-			return;
 		}
 	}
 
