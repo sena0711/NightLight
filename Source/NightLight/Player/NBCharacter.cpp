@@ -96,9 +96,6 @@ void ANBCharacter::CheckForGrabableItem()
 			{
 				playerController->CurrentPickupable = pickupable;
 			}
-		
-			
-			//playerController->CurrentGrabable = Cast<ABaseGrabable>(pickupable);
 		}
 		if (ABaseGrabable* grabable = Cast<ABaseGrabable>(Hit.GetActor()))
 		{
@@ -107,9 +104,6 @@ void ANBCharacter::CheckForGrabableItem()
 				playerController->CurrentGrabable = grabable;
 			}
 			playerController->CurrentGrabable->InFocus();
-
-
-			return;
 		}
 		// If we didn't hit anything, or thing we hit was on to a interactable set current interactable nullptr. 
 		else
@@ -206,6 +200,12 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ANBCharacter::HoldFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ANBCharacter::ReleaseFire);
 
+	//PlayerInputComponent->BindAction("PreWeapon", IE_Pressed, this, &ANBCharacter::HoldFire);
+	//PlayerInputComponent->BindAction("PreWeapon", IE_Released, this, &ANBCharacter::ReleaseFire);
+	//PlayerInputComponent->BindAction("NextWeapon", IE_Pressed, this, &ANBCharacter::HoldFire);
+	//PlayerInputComponent->BindAction("NextWeapon", IE_Released, this, &ANBCharacter::ReleaseFire);
+	//PlayerInputComponent->BindAction("Zoom", IE_Pressed, this, &ANBCharacter::HoldFire);
+	//PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ANBCharacter::ReleaseFire);
 }
 void ANBCharacter::SpawnTorch()
 {

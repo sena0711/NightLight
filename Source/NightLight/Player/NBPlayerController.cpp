@@ -144,6 +144,6 @@ void ANBPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	InputComponent->BindAction("Use", IE_Pressed, this, &ANBPlayerController::Interact);
+	InputComponent->BindAction("PickUp", IE_Pressed, this, &ANBPlayerController::Interact);
 }
 
