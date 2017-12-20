@@ -34,6 +34,9 @@ protected:
 		/*Related Value - float*/
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			float PickedUpValue;
+		/*If the itemtype is bullet Which bullet*/
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+			EBulletType BulletTypes;
 
 public:
 

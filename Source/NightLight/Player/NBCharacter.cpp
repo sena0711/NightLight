@@ -14,7 +14,7 @@
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "../Assets/BaseGrabable.h"
 #include "../Assets/BasePickupable.h"
-#include "../Assets/BaseTorch.h"
+//#include "../Assets/BaseTorch.h"
 #include "NBPlayerController.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ ANBCharacter::ANBCharacter()
 	BaseLookUpRate = 45.f;
 	CameraSensitivity = 0.5f;
 	DefaultCameraSensitivity = CameraSensitivity;
-	MaxInteractDistance = 300.0f;
+	MaxInteractDistance = 200.0f;
 	HoldingCameraSensitivity = CameraSensitivity*0.5;
 	TurnValue = 1.0f;
 	HoldingObject = false;
@@ -214,18 +214,19 @@ void ANBCharacter::SpawnTorch()
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = Instigator;
 	// if current weapon is empty assign current weapon
-	if (TorchClass != nullptr)
+	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
+	if (playerController)
 	{
-		if (CurrentTorch == nullptr)
+		
+		if (playerController->TorchClass != nullptr)
 		{
-			CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(TorchClass, SpawnParams);
-			AttachTorchToGun();
-			CurrentTorch->SetOwningPawn(this);
+			if (CurrentTorch == nullptr)
+			{
+				CurrentTorch = GetWorld()->SpawnActor<ABaseTorch>(playerController->TorchClass, SpawnParams);
+				AttachTorchToGun();
+				CurrentTorch->SetOwningPawn(this);
+			}
 		}
-	}
-	else
-	{
-		//Torch class in player character bp needs to be set. 
 	}
 }
 void ANBCharacter::SpawnWeapon(TSubclassOf <class ABaseWeapon> WeaponClass)

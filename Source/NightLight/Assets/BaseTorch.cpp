@@ -60,8 +60,10 @@ void ABaseTorch::DrainEnergy()
 {
 	if (CurrentEnergy <= 0)
 	{
-		GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
 		CurrentEnergy = 0;
+		SetVisiblity(false);
+		GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
+
 	}
 	else
 	{
@@ -75,8 +77,7 @@ void ABaseTorch::SetVisiblity(bool bVisiblity)
 	// if there is energy
 	if (CurrentEnergy > 0.0f)
 	{
-		TorchSpotlight->ToggleVisibility(bVisiblity);
-
+		TorchSpotlight->SetVisibility(bVisiblity);
 		//if torch is on drain energy.
 		if (bVisiblity == true)
 		{
@@ -89,7 +90,7 @@ void ABaseTorch::SetVisiblity(bool bVisiblity)
 	}
 	else // if there is no energy left toggle visiblity.
 	{
-		TorchSpotlight->ToggleVisibility(false);
+		TorchSpotlight->SetVisibility(false);
 		GetWorldTimerManager().ClearTimer(StartReducingEnergyTimerHandle);
 	}
 }
