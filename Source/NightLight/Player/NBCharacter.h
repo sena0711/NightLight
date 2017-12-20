@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Player/BaseCharacter.h"
 #include "NBCharacter.generated.h"
-
+//#include "../Assets/BaseTorch.h"
 /**
  * 
  */
@@ -28,6 +28,8 @@ class ANBCharacter : public ABaseCharacter
 
 public:
 	ANBCharacter();
+
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 		class UPhysicsHandleComponent * PhysicsHandle;
@@ -80,16 +82,12 @@ protected:
 
 	/** current firing state */
 	uint8 bPressingFire : 1;
-
+	/** current Weapon Being used */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		class ABaseWeapon *CurrentWeapon;
-
+	/** current Torch Being used */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 		class ABaseTorch *CurrentTorch;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
-		TSubclassOf <class ABaseTorch> TorchClass;
-
 
 	/************************************************************************/
 	/* Anim use                                                           */

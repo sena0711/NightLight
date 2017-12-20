@@ -54,6 +54,7 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		//add bullet numbers
 		AddItemToArray(eItemType, stackNumber);
 		interactedItem->Destroy();
+		
 		break;
 
 	case EItemType::LightBullets:
@@ -111,6 +112,11 @@ FName ANBPlayerController::GetWarningText()
 {
 	return WarningText;
 }
+void ANBPlayerController::BeginPlay()
+{
+	InitializeBulletItems();
+	InitializeBulletItemsUIimages();
+}
 void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks)
 {
 	//initialize item to add.
@@ -145,6 +151,39 @@ void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks
 	//set index number. 
 	InventoryItems[index].indexNumber = index;
 }
+void ANBPlayerController::InitializeBulletItems()
+{
+	FBulletItem InitBulletItem;
+
+	for (int32 b = 0; b < EXISTINGBULLETTYPES; b++)
+	{
+		InitBulletItem.CurrentPossesed = 0;
+		InitBulletItem.BulletType = (EBulletType)b;
+		BulletItems.Add(InitBulletItem);
+	}
+}
+
+void ANBPlayerController::SetBullets(EItemType eItemType, int32 addingStacks)
+{
+	int32 bulletIndex;
+	int32 index; 
+	if ((eItemType == EItemType::StandardBullets) || (eItemType == EItemType::LightBullets))
+	{
+		index = SearchInventoryItemsByType(eItemType);
+		if (index != NOTEXISTING)
+		{		
+			bulletIndex = SearchBulletItemsByType(GetBulletTypesFromItemType(eItemType));
+			if (bulletIndex != NOTEXISTING)
+			{
+				//set bullet items
+				BulletItems[bulletIndex].CurrentPossesed = InventoryItems[index].CurrentStackNumber;
+			}
+		}
+	}
+
+
+}
+
 
 int32 ANBPlayerController::SearchInventoryItemsByType(EItemType eItemType)
 {
@@ -162,6 +201,39 @@ int32 ANBPlayerController::SearchInventoryItemsByType(EItemType eItemType)
 	}
 
 	return index;
+}
+
+int32 ANBPlayerController::SearchBulletItemsByType(EBulletType eItemType)
+{	
+	int32 index = NOTEXISTING;
+	//search and return the index of searched array if not found it will return null
+	for (int32 b = 0; b < InventoryItems.Num(); b++)
+	{
+		if (BulletItems[b].BulletType == eItemType)
+		{
+			index = b;
+			break;
+		}
+	}
+	return index;
+}
+
+EBulletType ANBPlayerController::GetBulletTypesFromItemType(EItemType eItemType)
+{
+	EBulletType matchingBullet;
+
+	switch (eItemType)
+	{
+	case EItemType::StandardBullets:
+		matchingBullet = EBulletType::EStandard;
+		break;
+	case EItemType::LightBullets:
+		matchingBullet = EBulletType::ELight;
+		break;
+	default:
+		break;
+	}
+	return matchingBullet;
 }
 
 void ANBPlayerController::SetupInputComponent()

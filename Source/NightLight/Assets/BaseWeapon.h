@@ -24,11 +24,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
 		class ANBCharacter* MyPawn;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
 		EWeaponType WeaponType;
 
+	//Weapon Config
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
-		UTexture2D* WeaponImage2D;
+		FWeaponData WeaponConfig;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
