@@ -79,6 +79,10 @@ protected:
 	/** Stops adding left mouse input */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bStopDownMouseInput;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bJumpButtonDown;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		bool bCrouchButtonDown;
 
 	/** current firing state */
 	uint8 bPressingFire : 1;
@@ -141,6 +145,16 @@ protected:
 
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
+
+	/** HoldJumpKey. */
+	void PressJump();
+	/*ReleaseJumpKey*/
+	void ReleaseJump();
+
+	/** HoldCrochKey. */
+	void PressCrouch();
+	/*ReleaseCrouchKey*/
+	void ReleaseCrouch();
 
 	/** HoldObject. */
 	void HoldObject();

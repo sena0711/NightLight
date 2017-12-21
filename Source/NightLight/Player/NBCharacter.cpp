@@ -34,11 +34,13 @@ ANBCharacter::ANBCharacter()
 	BaseLookUpRate = 45.f;
 	CameraSensitivity = 0.5f;
 	DefaultCameraSensitivity = CameraSensitivity;
-	MaxInteractDistance = 200.0f;
+	MaxInteractDistance = 300.0f;
 	HoldingCameraSensitivity = CameraSensitivity*0.5;
 	TurnValue = 1.0f;
 	HoldingObject = false;
 	bPressingFire = false;
+	bJumpButtonDown = false;
+	bCrouchButtonDown = false;
 	LookingDirection = ELookingDirection::NoChange;
 
 
@@ -173,8 +175,11 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ANBCharacter::PressJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ANBCharacter::ReleaseJump);
+
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ANBCharacter::PressCrouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ANBCharacter::ReleaseCrouch);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ANBCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ANBCharacter::MoveRight);
@@ -252,11 +257,36 @@ void ANBCharacter::OnResetVR()
 void ANBCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	Jump();
+	bJumpButtonDown = true;
 }
 
 void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+	bJumpButtonDown = false;
+}
+
+void ANBCharacter::PressJump()
+{
+	Jump();
+	bJumpButtonDown = true;
+}
+
+void ANBCharacter::ReleaseJump()
+{
+	StopJumping();
+	bJumpButtonDown = false;
+
+}
+
+void ANBCharacter::PressCrouch()
+{
+	bCrouchButtonDown = true;
+}
+
+void ANBCharacter::ReleaseCrouch()
+{
+	bCrouchButtonDown = false;
 }
 
 void ANBCharacter::HoldObject()
