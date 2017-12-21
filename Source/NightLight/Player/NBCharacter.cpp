@@ -176,6 +176,9 @@ void ANBCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ACharacter::PressCrouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ACharacter::ReleaseCrouch);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &ANBCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ANBCharacter::MoveRight);
 
@@ -252,11 +255,23 @@ void ANBCharacter::OnResetVR()
 void ANBCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	Jump();
+	bJumpButtonDown = true;
 }
 
 void ANBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+	bJumpButtonDown = false;
+}
+
+void ANBCharacter::PressCrouch()
+{
+	bCrouchButtonDown = true;
+}
+
+void ANBCharacter::ReleaseCrouch()
+{
+	bCrouchButtonDown = false;
 }
 
 void ANBCharacter::HoldObject()
