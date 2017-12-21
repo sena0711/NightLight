@@ -80,9 +80,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bStopDownMouseInput;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
-		uint8 bJumpButtonDown : 1;
+		bool bJumpButtonDown;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
-		uint8 bCrouchButtonDown : 1;
+		bool bCrouchButtonDown;
 
 	/** current firing state */
 	uint8 bPressingFire : 1;
@@ -146,9 +146,14 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
-	/** HoldObject. */
+	/** HoldJumpKey. */
+	void PressJump();
+	/*ReleaseJumpKey*/
+	void ReleaseJump();
+
+	/** HoldCrochKey. */
 	void PressCrouch();
-	/*ReleaseObject*/
+	/*ReleaseCrouchKey*/
 	void ReleaseCrouch();
 
 	/** HoldObject. */
