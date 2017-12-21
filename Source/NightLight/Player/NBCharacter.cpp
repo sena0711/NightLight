@@ -34,7 +34,7 @@ ANBCharacter::ANBCharacter()
 	BaseLookUpRate = 45.f;
 	CameraSensitivity = 0.5f;
 	DefaultCameraSensitivity = CameraSensitivity;
-	MaxInteractDistance = 200.0f;
+	MaxInteractDistance = 300.0f;
 	HoldingCameraSensitivity = CameraSensitivity*0.5;
 	TurnValue = 1.0f;
 	HoldingObject = false;
