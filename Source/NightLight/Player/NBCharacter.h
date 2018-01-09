@@ -185,6 +185,12 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Calculation")
 		void UpdateSlide(float Value);
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void WhenCrouched();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void WhenNotCrouched();
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

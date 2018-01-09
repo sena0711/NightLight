@@ -282,11 +282,13 @@ void ANBCharacter::ReleaseJump()
 void ANBCharacter::PressCrouch()
 {
 	bCrouchButtonDown = true;
+	WhenCrouched();
 }
 
 void ANBCharacter::ReleaseCrouch()
 {
 	bCrouchButtonDown = false;
+	WhenNotCrouched();
 }
 
 void ANBCharacter::HoldObject()
