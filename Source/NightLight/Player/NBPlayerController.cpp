@@ -221,7 +221,7 @@ int32 ANBPlayerController::SearchBulletItemsByType(EBulletType eItemType)
 EBulletType ANBPlayerController::GetBulletTypesFromItemType(EItemType eItemType)
 {
 	EBulletType matchingBullet;
-
+	matchingBullet = EBulletType::EStandard;
 	switch (eItemType)
 	{
 	case EItemType::StandardBullets:

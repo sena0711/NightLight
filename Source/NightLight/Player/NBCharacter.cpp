@@ -301,7 +301,7 @@ void ANBCharacter::HoldObject()
 		if (playerController->CurrentGrabable != nullptr)
 		{
 			HoldingObject = true;
-			playerController->CurrentGrabable->WhenGrabbed();
+			playerController->CurrentGrabable->WhenInteracted();
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
 			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetLocationOfMesh());
 		}
