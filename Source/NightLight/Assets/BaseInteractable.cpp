@@ -17,6 +17,10 @@ ABaseInteractable::ABaseInteractable()
 void ABaseInteractable::BeginPlay()
 {
 	PickupMesh->SetSimulatePhysics(false);
+	PickupMesh->SetEnableGravity(false);
+	NameOfItem = "Interactable";
+	bHoldable = false;
+
 
 }
 // Called every frame
