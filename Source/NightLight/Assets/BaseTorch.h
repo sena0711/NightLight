@@ -22,6 +22,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
 		class UStaticMeshComponent* TorchMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
+		class UStaticMeshComponent* TorchCollisionMesh;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
 		class ANBCharacter* MyPawn;

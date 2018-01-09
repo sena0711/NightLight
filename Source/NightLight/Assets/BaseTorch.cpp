@@ -25,6 +25,12 @@ ABaseTorch::ABaseTorch()
 	TorchMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
 	TorchMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
+	TorchCollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightCollision"));
+	TorchCollisionMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	TorchCollisionMesh->SetupAttachment(TorchMesh);
+	TorchCollisionMesh->SetRelativeRotation(FRotator(0, 0, 0));
+	TorchCollisionMesh->SetRelativeLocation(FVector(0, 0, -0));
+
 
 	TorchSpotlight = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLight"));
 	TorchSpotlight->SetupAttachment(TorchMesh);
