@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BaseInteractable.h"
-
+#include "Components/SceneComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 
 
@@ -15,6 +16,7 @@ ABaseInteractable::ABaseInteractable()
 }
 void ABaseInteractable::BeginPlay()
 {
+	PickupMesh->SetSimulatePhysics(false);
 
 }
 // Called every frame

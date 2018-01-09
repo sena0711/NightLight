@@ -116,6 +116,8 @@ void ANBPlayerController::BeginPlay()
 {
 	InitializeBulletItems();
 	InitializeBulletItemsUIimages();
+	FName text = "Testing Warning Text. This will appear for 3 sec";
+	SetWarningText(text, 3.0);
 }
 void ANBPlayerController::AddItemToArray(EItemType eItemType, int32 addingStacks)
 {
