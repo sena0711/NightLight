@@ -5,7 +5,7 @@
 #include "Components/SpotLightComponent.h"
 #include "TimerManager.h"
 #include "Player/NBCharacter.h"
-#include "Runtime/Engine/Classes/Engine/Engine.h"
+//
 // Sets default values
 ABaseTorch::ABaseTorch()
 {
@@ -52,9 +52,9 @@ void ABaseTorch::BeginPlay()
 
 void ABaseTorch::OnOverlapEnableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
-	// Inlight
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
+	//// Inlight include -> to enable GEngine #include "Runtime/Engine/Classes/Engine/Engine.h"
+	//if (GEngine)
+	//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
 }
 
 void ABaseTorch::OnEndOverlapDisableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)

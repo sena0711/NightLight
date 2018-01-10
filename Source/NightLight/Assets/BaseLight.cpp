@@ -10,9 +10,18 @@ ABaseLight::ABaseLight()
 	PrimaryActorTick.bCanEverTick = true;
 
 	LightSourceMesh = CreateDefaultSubobject<UStaticMeshComponent>("LightSourceMesh");
+	LightSourceMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
+	LightSourceMesh->SetNotifyRigidBodyCollision(true);
 
-	LightVolumeCollision = CreateDefaultSubobject<UStaticMeshComponent>("LightVolumeCollision");
-	LightVolumeCollision->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
+	LightVolumeCollision = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightVolumeCollision"));
+	//TorchCollisionMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	LightVolumeCollision->SetCollisionResponseToAllChannels(ECR_Overlap);
+	LightVolumeCollision->SetupAttachment(LightSourceMesh);
+	LightVolumeCollision->SetRelativeRotation(FRotator(0, 0, 0));
+	LightVolumeCollision->SetRelativeLocation(FVector(0, 0, -0));
+	LightVolumeCollision->OnComponentBeginOverlap.AddDynamic(this, &ABaseLight::OnOverlapEnableInLight);
+	LightVolumeCollision->OnComponentEndOverlap.AddDynamic(this, &ABaseLight::OnEndOverlapDisableInLight);
+	LightVolumeCollision->bHiddenInGame = true;
 
 }
 
@@ -21,6 +30,14 @@ void ABaseLight::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ABaseLight::OnOverlapEnableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+}
+
+void ABaseLight::OnEndOverlapDisableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
 }
 
 // Called every frame
