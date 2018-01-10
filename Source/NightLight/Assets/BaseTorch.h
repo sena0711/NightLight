@@ -15,11 +15,13 @@ public:
 	// Sets default values for this actor's properties
 	ABaseTorch();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Torch")
 		class USpotLightComponent* TorchSpotlight;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Torch")
+		class UStaticMeshComponent* TorchCollisionMesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Torch")
 		class UStaticMeshComponent* TorchMesh;
 
 protected:
@@ -45,6 +47,16 @@ protected:
 		bool IsTorchOn;
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	/************************************************************************/
+	/* Overlap functions                                      */
+	/************************************************************************/
+	UFUNCTION()
+		void OnOverlapEnableInLight(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		void OnEndOverlapDisableInLight(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
 
 public:	
 	// Called every frame
