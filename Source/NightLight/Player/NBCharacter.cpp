@@ -42,7 +42,7 @@ ANBCharacter::ANBCharacter()
 	bJumpButtonDown = false;
 	bCrouchButtonDown = false;
 	LookingDirection = ELookingDirection::NoChange;
-
+	SideLookingDirection = ESideLookingDirection::NoChange;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -282,16 +282,18 @@ void ANBCharacter::ReleaseJump()
 void ANBCharacter::PressCrouch()
 {
 	bCrouchButtonDown = true;
+	WhenCrouched();
 }
 
 void ANBCharacter::ReleaseCrouch()
 {
 	bCrouchButtonDown = false;
+	WhenNotCrouched();
 }
 
 void ANBCharacter::HoldObject()
 {
-//	CameraSensitivity = HoldingCameraSensitivity;
+	CameraSensitivity = HoldingCameraSensitivity;
 
 	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
 	if (playerController)
@@ -299,7 +301,7 @@ void ANBCharacter::HoldObject()
 		if (playerController->CurrentGrabable != nullptr)
 		{
 			HoldingObject = true;
-			playerController->CurrentGrabable->WhenGrabbed();
+			playerController->CurrentGrabable->WhenInteracted();
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
 			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetLocationOfMesh());
 		}
@@ -360,6 +362,19 @@ void ANBCharacter::LookUpAtRate(float Rate)
 
 void ANBCharacter::AddMouseYawInput(float Value)
 {
+	if (Value == 0.0)
+	{
+		SideLookingDirection = ESideLookingDirection::NoChange;
+	}
+	else if (Value > 0.0)
+	{
+		SideLookingDirection = ESideLookingDirection::LookingRight;
+	}
+	else if (Value < 0.0)
+	{
+		SideLookingDirection = ESideLookingDirection::LookingLeft;
+	}
+
 	TurnValue = Value * CameraSensitivity;
 	if (TurnValue != 0.f && Controller && Controller->IsLocalPlayerController())
 	{

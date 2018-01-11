@@ -17,6 +17,12 @@ class NIGHTLIGHT_API ABaseGrabable : public ABaseMovable
 protected:
 	ABaseGrabable();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Text)
+		FName InteractText;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Text)
+		FName NameOfItem;
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
@@ -35,7 +41,7 @@ public:
 		FVector GetLocationOfMesh();
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void WhenGrabbed();
+		void WhenInteracted();
 	UFUNCTION(BlueprintImplementableEvent)
 		void InFocus();
 

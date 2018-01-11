@@ -19,12 +19,12 @@ class NIGHTLIGHT_API ABasePickupable : public ABaseGrabable
 protected:
 		ABasePickupable();
 
-		//vectorlength/ volumeMultiplierValue
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
-			FName InteractText;
+		////vectorlength/ volumeMultiplierValue
+		//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+		//	FName InteractText;
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
-			FName NameOfItem;
+		//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+		//	FName NameOfItem;
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			EItemType ItemType;

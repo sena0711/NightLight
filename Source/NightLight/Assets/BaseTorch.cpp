@@ -5,7 +5,7 @@
 #include "Components/SpotLightComponent.h"
 #include "TimerManager.h"
 #include "Player/NBCharacter.h"
-
+//
 // Sets default values
 ABaseTorch::ABaseTorch()
 {
@@ -25,6 +25,15 @@ ABaseTorch::ABaseTorch()
 	TorchMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
 	TorchMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
+	TorchCollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightCollision"));
+	//TorchCollisionMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	TorchCollisionMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
+	TorchCollisionMesh->SetupAttachment(TorchMesh);
+	TorchCollisionMesh->SetRelativeRotation(FRotator(0, 0, 0));
+	TorchCollisionMesh->SetRelativeLocation(FVector(0, 0, -0));
+	TorchCollisionMesh->OnComponentBeginOverlap.AddDynamic(this, &ABaseTorch::OnOverlapEnableInLight);
+	TorchCollisionMesh->OnComponentEndOverlap.AddDynamic(this, &ABaseTorch::OnEndOverlapDisableInLight);
+	TorchCollisionMesh->bHiddenInGame = true;
 
 	TorchSpotlight = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLight"));
 	TorchSpotlight->SetupAttachment(TorchMesh);
@@ -39,6 +48,17 @@ void ABaseTorch::BeginPlay()
 {
 	Super::BeginPlay();
 	SetVisiblity(true);
+}
+
+void ABaseTorch::OnOverlapEnableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	//// Inlight include -> to enable GEngine #include "Runtime/Engine/Classes/Engine/Engine.h"
+	//if (GEngine)
+	//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
+}
+
+void ABaseTorch::OnEndOverlapDisableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
 }
 
 // Called every frame
