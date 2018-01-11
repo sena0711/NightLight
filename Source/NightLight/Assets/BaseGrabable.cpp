@@ -12,7 +12,7 @@ ABaseGrabable::ABaseGrabable()
 	PrimaryActorTick.bCanEverTick = true;
 
 	bHoldable = true;
-
+	PickupMesh->SetSimulatePhysics(false);
 	SecondaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SecondaryMesh"));
 	SecondaryMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
 	SecondaryMesh->SetSimulatePhysics(false);
