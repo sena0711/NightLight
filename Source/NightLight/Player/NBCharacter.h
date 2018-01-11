@@ -19,6 +19,16 @@ enum class ELookingDirection : uint8
 
 	LookingDown,
 };
+UENUM(BlueprintType)
+enum class ESideLookingDirection : uint8
+{
+	LookingRight,
+
+	NoChange,
+
+	LookingLeft,
+};
+
 
 
 UCLASS()
@@ -43,7 +53,9 @@ public:
 		float BaseLookUpRate;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		ELookingDirection LookingDirection;
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+		ESideLookingDirection SideLookingDirection;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float CameraSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		float DefaultCameraSensitivity;
