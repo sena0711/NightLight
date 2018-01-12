@@ -24,6 +24,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
 		class USkeletalMeshComponent* WeaponMesh;
+private:
+	UPROPERTY(EditDefaultsOnly)
+		FName MuzzleAttachPoint;
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
@@ -47,6 +50,10 @@ protected:
 	bool CanFire() const;
 
 	FVector GetAdjustedAim() const;
+
+	FVector GetMuzzleLocation() const;
+
+	FVector GetMuzzleDirection() const;
 
 	FVector GetCameraDamageStartLocation(const FVector& AimDir) const;
 

@@ -59,6 +59,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
 		UTexture2D* WeaponImage;
 
+	/** Projectile travel length */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
+		float WeaponRange;
+
+
 	/** defaults */
 	FWeaponData()
 	{

@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "NightLight.h"
 #include "BaseWeapon.h"
 #include "Player/NBCharacter.h"
+#include "Player/NBPlayerController.h"
 #include "Components/SkeletalMeshComponent.h"
 
 
@@ -20,6 +22,10 @@ ABaseWeapon::ABaseWeapon()
 	WeaponMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	WeaponMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
 	WeaponMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	RootComponent = WeaponMesh;
+
+	MuzzleAttachPoint = TEXT("MuzzleSocket");
 }
 
 // Called when the game starts or when spawned
@@ -31,26 +37,73 @@ void ABaseWeapon::BeginPlay()
 
 bool ABaseWeapon::CanFire() const
 {
-	return false;
+	return MyPawn->GetbIsAlive();
 }
 
 FVector ABaseWeapon::GetAdjustedAim() const
 {
-	return FVector();
+	
+	ANBPlayerController* const PC = Instigator ? Cast<ANBPlayerController>(Instigator->Controller) : nullptr;
+	FVector FinalAim = FVector::ZeroVector;
+
+	if (PC)
+	{
+		FVector CamLoc;
+		FRotator CamRot;
+		PC->GetPlayerViewPoint(CamLoc, CamRot);
+
+		FinalAim = CamRot.Vector();
+	}
+	else if (Instigator)
+	{
+		FinalAim = Instigator->GetBaseAimRotation().Vector();
+	}
+
+	return FinalAim;
+}
+
+FVector ABaseWeapon::GetMuzzleLocation() const
+{
+	return WeaponMesh->GetSocketLocation(MuzzleAttachPoint);
+}
+
+FVector ABaseWeapon::GetMuzzleDirection() const
+{
+	return WeaponMesh->GetSocketRotation(MuzzleAttachPoint).Vector();
 }
 
 FVector ABaseWeapon::GetCameraDamageStartLocation(const FVector & AimDir) const
 {
-	return FVector();
+	ANBPlayerController* PC = MyPawn ? Cast<ANBPlayerController>(MyPawn->Controller) : nullptr;
+	FVector OutStartTrace = FVector::ZeroVector;
+
+	if (PC)
+	{
+		FRotator DummyRot;
+		PC->GetPlayerViewPoint(OutStartTrace, DummyRot);
+
+		// Adjust trace so there is nothing blocking the ray between the camera and the pawn, and calculate distance from adjusted start
+		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((Instigator->GetActorLocation() - OutStartTrace), AimDir));
+	}
+
+	return OutStartTrace;
 }
 
 FHitResult ABaseWeapon::WeaponTrace(const FVector & TraceFrom, const FVector & TraceTo) const
 {
-	return FHitResult();
+	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, Instigator);
+	TraceParams.bTraceAsyncScene = true;
+	TraceParams.bReturnPhysicalMaterial = true;
+
+	FHitResult Hit(ForceInit);
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceFrom, TraceTo, WEAPON_TRACE, TraceParams);
+
+	return Hit;
 }
 
 void ABaseWeapon::StartFire()
 {
+	
 }
 
 void ABaseWeapon::StopFire()
