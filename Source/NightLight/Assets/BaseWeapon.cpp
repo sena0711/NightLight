@@ -29,6 +29,34 @@ void ABaseWeapon::BeginPlay()
 	
 }
 
+bool ABaseWeapon::CanFire() const
+{
+	return false;
+}
+
+FVector ABaseWeapon::GetAdjustedAim() const
+{
+	return FVector();
+}
+
+FVector ABaseWeapon::GetCameraDamageStartLocation(const FVector & AimDir) const
+{
+	return FVector();
+}
+
+FHitResult ABaseWeapon::WeaponTrace(const FVector & TraceFrom, const FVector & TraceTo) const
+{
+	return FHitResult();
+}
+
+void ABaseWeapon::StartFire()
+{
+}
+
+void ABaseWeapon::StopFire()
+{
+}
+
 // Called every frame
 void ABaseWeapon::Tick(float DeltaTime)
 {

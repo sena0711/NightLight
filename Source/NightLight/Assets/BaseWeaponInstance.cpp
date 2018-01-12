@@ -7,3 +7,19 @@ ABaseWeaponInstance::ABaseWeaponInstance()
 {
 
 }
+
+void ABaseWeaponInstance::FireWeapon()
+{
+}
+
+void ABaseWeaponInstance::SimulateInstantHit(const FVector & ImpactPoint)
+{
+}
+
+void ABaseWeaponInstance::VisualImpactEffects(const FHitResult & Impact)
+{
+}
+
+void ABaseWeaponInstance::VisualTrailEffects(const FVector & EndPoint)
+{
+}

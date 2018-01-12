@@ -16,9 +16,14 @@ public:
 	// Sets default values for this actor's properties
 	ABaseWeapon();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	/* Set the Torch's owning pawn */
+	void SetOwningPawn(class ANBCharacter* NewOwner);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
 		class USkeletalMeshComponent* WeaponMesh;
-
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
@@ -34,15 +39,30 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	/************************************************************************/
+	/* Fire & Damage Handling                                               */
+	/************************************************************************/
 
+
+	bool CanFire() const;
+
+	FVector GetAdjustedAim() const;
+
+	FVector GetCameraDamageStartLocation(const FVector& AimDir) const;
+
+	FHitResult WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const;
+
+	/* With PURE_VIRTUAL we skip implementing the function in SWeapon.cpp and can do this in SWeaponInstant.cpp / SFlashlight.cpp instead */
+	virtual void FireWeapon() PURE_VIRTUAL(ABaseWeapon::FireWeapon, );
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	/* Set the Torch's owning pawn */
-	void SetOwningPawn(class ANBCharacter* NewOwner);
 
 
+	void StartFire();
+
+	void StopFire();
+
+//	/* You can assign default values to function parameters, these are then optional to specify/override when calling the function. */
+	//void AttachMeshToPawn(EInventorySlot Slot = EInventorySlot::Hands);
 	
 };
