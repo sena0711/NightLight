@@ -322,7 +322,7 @@ void ANBCharacter::PressFire()
 		bPressingFire = true;
 		if (CurrentWeapon)
 		{
-			//CurrentWeapon->StartFire();
+			CurrentWeapon->StartFire();
 		}
 	}
 }

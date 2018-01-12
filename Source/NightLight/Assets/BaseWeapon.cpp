@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "NightLight.h"
 #include "BaseWeapon.h"
+#include "NightLight.h"
 #include "Player/NBCharacter.h"
 #include "Player/NBPlayerController.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -25,6 +24,7 @@ ABaseWeapon::ABaseWeapon()
 
 	RootComponent = WeaponMesh;
 
+	CurrentState = EWeaponState::Idle;
 	MuzzleAttachPoint = TEXT("MuzzleSocket");
 }
 
@@ -103,7 +103,7 @@ FHitResult ABaseWeapon::WeaponTrace(const FVector & TraceFrom, const FVector & T
 
 void ABaseWeapon::StartFire()
 {
-	
+	DetermineWeaponState(EWeaponState::Firing);
 }
 
 void ABaseWeapon::StopFire()
@@ -124,5 +124,96 @@ void ABaseWeapon::SetOwningPawn(ANBCharacter * NewOwner)
 		Instigator = NewOwner;
 		MyPawn = NewOwner;
 	}
+}
+
+void ABaseWeapon::SetWeaponState(EWeaponState NewState)
+{
+	CurrentState = NewState;
+	switch (CurrentState)
+	{
+	case EWeaponState::Idle:
+		break;
+	case EWeaponState::Firing:
+
+		break;
+	case EWeaponState::Equipping:
+		break;
+	case EWeaponState::Reloading:
+		break;
+	default:
+		break;
+	}
+	
+}
+void ABaseWeapon::DetermineWeaponState(EWeaponState NextState)
+{
+	bool AcceptNewState = true;
+
+	switch (CurrentState)
+	{
+	case EWeaponState::Idle:
+		if (NextState == EWeaponState::Idle || NextState == EWeaponState::Firing ||
+			NextState == EWeaponState::Equipping || NextState == EWeaponState::Reloading)
+		{
+			AcceptNewState = true;
+		}
+		else
+		{
+			AcceptNewState = false;
+		}
+
+		break;
+	case EWeaponState::Firing:
+		if (NextState == EWeaponState::Idle || NextState == EWeaponState::Firing ||
+			NextState == EWeaponState::Equipping || NextState == EWeaponState::Reloading)
+		{
+			AcceptNewState = true;
+		}
+		else
+		{
+			AcceptNewState = false;
+		}
+
+		break;
+	case EWeaponState::Equipping:
+		if (NextState == EWeaponState::Idle || NextState == EWeaponState::Firing ||
+			NextState == EWeaponState::Equipping || NextState == EWeaponState::Reloading)
+		{
+			AcceptNewState = true;
+		}
+		else
+		{
+			AcceptNewState = false;
+		}
+
+		break;
+	case EWeaponState::Reloading:
+		if (NextState == EWeaponState::Idle || NextState == EWeaponState::Firing ||
+			NextState == EWeaponState::Equipping || NextState == EWeaponState::Reloading)
+		{
+			AcceptNewState = true;
+		}
+		else
+		{
+			AcceptNewState = false;
+		}
+
+		break;
+	default:
+		break;
+	}
+
+	if (AcceptNewState == true)
+	{
+		SetWeaponState(NextState);
+	}
+	else
+	{
+
+	}
+}
+
+void ABaseWeapon::HandleFiring()
+{
 }
 

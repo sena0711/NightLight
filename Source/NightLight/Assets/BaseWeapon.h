@@ -25,8 +25,22 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Collision")
 		class USkeletalMeshComponent* WeaponMesh;
 private:
+	/* NewState will trigger actions in this function*/
+	void SetWeaponState(EWeaponState NewState);
+	/* Decide if the next State is possible*/
+	void DetermineWeaponState(EWeaponState NextState);
+	/*Handles firing*/
+	virtual void HandleFiring();
+
 	UPROPERTY(EditDefaultsOnly)
 		FName MuzzleAttachPoint;
+
+	UPROPERTY(EditDefaultsOnly)
+		EWeaponState CurrentState;
+
+	UPROPERTY(EditDefaultsOnly)
+		float LastFireTime;
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")

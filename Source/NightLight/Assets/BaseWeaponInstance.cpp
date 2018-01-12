@@ -26,7 +26,7 @@ void ABaseWeaponInstance::FireWeapon()
 		AdjustedAimDir = (Impact.ImpactPoint - MuzzleOrigin).GetSafeNormal();
 
 		/* Re-trace with the new aim direction coming out of the weapon muzzle */
-		Impact = WeaponTrace(MuzzleOrigin, MuzzleOrigin + (AdjustedAimDir * WeaponRange));
+		Impact = WeaponTrace(MuzzleOrigin, MuzzleOrigin + (AdjustedAimDir * WeaponConfig.WeaponRange));
 	}
 	else
 	{
@@ -34,7 +34,7 @@ void ABaseWeaponInstance::FireWeapon()
 		Impact.ImpactPoint = FVector_NetQuantize(EndPos);
 	}
 
-	ProcessInstantHit(Impact, MuzzleOrigin, AdjustedAimDir)
+	//ProcessInstantHit(Impact, MuzzleOrigin, AdjustedAimDir)
 }
 
 void ABaseWeaponInstance::SimulateInstantHit(const FVector & ImpactPoint)
