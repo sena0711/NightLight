@@ -24,6 +24,10 @@ public:
 
 	virtual void FireWeapon() override;
 
+	void DealDamage(const FHitResult& Impact, const FVector& ShootDir);
+
+	void ProcessInstantHit(const FHitResult& Impact, const FVector& Origin, const FVector& ShootDir);
+
 private:
 
 	/************************************************************************/
@@ -34,7 +38,7 @@ private:
 
 	void VisualImpactEffects(const FHitResult& Impact);
 
-	void VisualTrailEffects(const FVector& EndPoint);
+//	void VisualTrailEffects(const FVector& EndPoint);
 
 	/* Particle FX played when a surface is hit. */
 	UPROPERTY(EditDefaultsOnly)
@@ -53,8 +57,8 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		float MinimumProjectileSpawnDistance;
 
-	//UPROPERTY(EditDefaultsOnly)
-	//	int32 TracerRoundInterval;
+	UPROPERTY(EditDefaultsOnly)
+		int32 TracerRoundInterval;
 
 	/* Keeps track of number of shots fired */
 	int32 BulletsShotCount;
