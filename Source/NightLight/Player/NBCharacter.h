@@ -79,21 +79,21 @@ public:
 		FHitResult HitResultFromCameraCenter;
 protected:
 	/** Stops adding right mouse input. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Camera)
 		bool bStopRightMouseInput;
 	/** Stops adding left mouse input */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Camera)
 		bool bStopLeftMouseInput;
 
 	/** Stops adding right mouse input. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Camera)
 		bool bStopUpMouseInput;
 	/** Stops adding left mouse input */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Camera)
 		bool bStopDownMouseInput;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, Category = Camera)
 		bool bJumpButtonDown;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	UPROPERTY(EditDefaultsOnly, Category = Camera)
 		bool bCrouchButtonDown;
 
 	/** current firing state */

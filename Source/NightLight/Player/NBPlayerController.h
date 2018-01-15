@@ -20,13 +20,13 @@ public:
 
 
 	//The interactable that player is currently looking at. 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Interact)
 		class ABaseGrabable* CurrentGrabable;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Interact)
 		class ABasePickupable* CurrentPickupable;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Interact)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Interact)
 		bool bSearchReturnedNull;
 	/************************************************************************/
 	/* Class SetUps                                                           */

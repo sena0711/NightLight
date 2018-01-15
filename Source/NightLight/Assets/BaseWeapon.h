@@ -36,12 +36,11 @@ private:
 		FName MuzzleAttachPoint;
 
 	UPROPERTY(EditDefaultsOnly)
-		EWeaponState CurrentState;
-
-	UPROPERTY(EditDefaultsOnly)
 		float LastFireTime;
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
+		EWeaponState CurrentState;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
 		class ANBCharacter* MyPawn;
@@ -69,6 +68,7 @@ protected:
 
 	FVector GetMuzzleDirection() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Crosshair")
 	FVector GetCameraDamageStartLocation(const FVector& AimDir) const;
 
 	FHitResult WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const;
