@@ -334,7 +334,7 @@ void ANBCharacter::ReleaseFire()
 		bPressingFire = false;
 		if (CurrentWeapon)
 		{
-			//CurrentWeapon->StopFire();
+			CurrentWeapon->StopFire();
 		}
 	}
 }

@@ -4,6 +4,10 @@
 #include "../Core/BaseImpactEffect.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+/*debug*/
+#include "NightLight.h"
+#include "DrawDebugHelpers.h"
+/*DEBUGEND*/
 
 // Sets default values
 ABaseWeaponInstance::ABaseWeaponInstance()
@@ -15,7 +19,7 @@ void ABaseWeaponInstance::FireWeapon()
 {
 	const FVector AimDir = GetAdjustedAim();
 	const FVector CameraPos = GetCameraDamageStartLocation(AimDir);
-	const FVector EndPos = CameraPos + (AimDir * WeaponConfig.WeaponRange);
+	FVector EndPos = CameraPos + (AimDir * WeaponConfig.WeaponRange);
 
 	/* Check for impact by tracing from the camera position */
 	FHitResult Impact = WeaponTrace(CameraPos, EndPos);
@@ -27,17 +31,19 @@ void ABaseWeaponInstance::FireWeapon()
 	{
 		/* Adjust the shoot direction to hit at the crosshair. */
 		AdjustedAimDir = (Impact.ImpactPoint - MuzzleOrigin).GetSafeNormal();
-
+		EndPos = MuzzleOrigin + (AdjustedAimDir * WeaponConfig.WeaponRange);
 		/* Re-trace with the new aim direction coming out of the weapon muzzle */
-		Impact = WeaponTrace(MuzzleOrigin, MuzzleOrigin + (AdjustedAimDir * WeaponConfig.WeaponRange));
+		Impact = WeaponTrace(MuzzleOrigin, EndPos);
 	}
 	else
 	{
 		/* Use the maximum distance as the adjust direction */
 		Impact.ImpactPoint = FVector_NetQuantize(EndPos);
 	}
-
-	//ProcessInstantHit(Impact, MuzzleOrigin, AdjustedAimDir)
+	/*DEBUG*/
+	DrawDebugLine(GetWorld(), CameraPos, EndPos, FColor::Green, false, 10.0, 0, 0.5f);
+	/*DEBUGEND*/
+	ProcessInstantHit(Impact, MuzzleOrigin, AdjustedAimDir);
 }
 
 void ABaseWeaponInstance::DealDamage(const FHitResult & Impact, const FVector & ShootDir)

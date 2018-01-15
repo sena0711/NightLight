@@ -10,7 +10,6 @@
 ABaseWeapon::ABaseWeapon()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
 	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
 	WeaponMesh->SetVisibility(true);
@@ -24,8 +23,17 @@ ABaseWeapon::ABaseWeapon()
 
 	RootComponent = WeaponMesh;
 
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.TickGroup = TG_PrePhysics;
+
 	CurrentState = EWeaponState::Idle;
 	MuzzleAttachPoint = TEXT("MuzzleSocket");
+
+	WeaponConfig.MaxAmmoPerClip = 10;
+	WeaponConfig.CurrentAmmo = 10;
+	WeaponConfig.ShotCost = 1;
+	WeaponConfig.TimeBetweenShots = 0.5;
+	WeaponConfig.WeaponRange = 600;
 }
 
 // Called when the game starts or when spawned
@@ -91,10 +99,13 @@ FVector ABaseWeapon::GetCameraDamageStartLocation(const FVector & AimDir) const
 
 FHitResult ABaseWeapon::WeaponTrace(const FVector & TraceFrom, const FVector & TraceTo) const
 {
-	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, Instigator);
+	static FName WeaponFireTag = FName(TEXT("WeaponTrace"));
+
+	FCollisionQueryParams TraceParams(WeaponFireTag, true, Instigator);
 	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = true;
-
+	TraceParams.AddIgnoredActor(this);
+	TraceParams.AddIgnoredActor(MyPawn);
 	FHitResult Hit(ForceInit);
 	GetWorld()->LineTraceSingleByChannel(Hit, TraceFrom, TraceTo, WEAPON_TRACE, TraceParams);
 
@@ -108,6 +119,7 @@ void ABaseWeapon::StartFire()
 
 void ABaseWeapon::StopFire()
 {
+	DetermineWeaponState(EWeaponState::Idle);
 }
 
 // Called every frame
@@ -134,7 +146,7 @@ void ABaseWeapon::SetWeaponState(EWeaponState NewState)
 	case EWeaponState::Idle:
 		break;
 	case EWeaponState::Firing:
-
+		FireWeapon();
 		break;
 	case EWeaponState::Equipping:
 		break;

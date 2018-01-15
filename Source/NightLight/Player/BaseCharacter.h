@@ -25,8 +25,7 @@ protected:
 		float CurrentHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
 		float MaxHealth;
-	/** Rotate actor when forward button is pressed.. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Status)
+	/** is character alive use Get bisalive for update */
 		bool bIsAlive;
 
 public:	
@@ -35,7 +34,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	/*Checks health and sets bisalive and if alive passes true.*/
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		bool GetbIsAlive();
 
