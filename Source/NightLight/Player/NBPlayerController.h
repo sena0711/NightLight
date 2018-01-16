@@ -44,6 +44,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void Interact();
 
+
+	UFUNCTION(BlueprintCallable, Category = "Interactable")
+		void InteractReleased();
+
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void PossessInteractedItem(class ABasePickupable * interactedItem);
 

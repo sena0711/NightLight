@@ -301,7 +301,7 @@ void ANBCharacter::HoldObject()
 		if (playerController->CurrentGrabable != nullptr)
 		{
 			HoldingObject = true;
-			playerController->CurrentGrabable->WhenInteracted();
+			playerController->CurrentGrabable->WhenRightClicked();
 			ABaseGrabable* GrabbingMesh = playerController->CurrentGrabable;
 			PhysicsHandle->GrabComponentAtLocation(Cast<UPrimitiveComponent>(GrabbingMesh->PickupMesh), "", GrabbingMesh->GetLocationOfMesh());
 		}
@@ -311,6 +311,14 @@ void ANBCharacter::HoldObject()
 void ANBCharacter::ReleaseObject()
 {
 	CameraSensitivity = DefaultCameraSensitivity;
+	ANBPlayerController* playerController = Cast<ANBPlayerController>(GetController());
+	if (playerController)
+	{
+		if (playerController->CurrentGrabable != nullptr)
+		{
+			playerController->CurrentGrabable->WhenRightClickReleased();
+		}
+	}
 	PhysicsHandle->ReleaseComponent();
 	HoldingObject = false;
 }
