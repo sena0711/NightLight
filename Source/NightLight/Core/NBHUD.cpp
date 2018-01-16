@@ -12,7 +12,9 @@ ANBHUD::ANBHUD()
 	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshiarTexObj(TEXT("/Game/UI/HUD/HUDMain"));
 	CrosshairTex = CrosshiarTexObj.Object;
 
-	CrosshairIcon = UCanvas::MakeIcon(CrosshairTex, 54, 453, 50, 50);
+	//CrosshairIcon = UCanvas::MakeIcon(CrosshairTex, 3798, 231, 1013, 1007);
+	//CrosshairIcon = UCanvas::MakeIcon(CrosshairTex, 1579, 107, 1320, 1239);
+	CrosshairIcon = UCanvas::MakeIcon(CrosshairTex, 771, 690, 81, 89);
 }
 
 void ANBHUD::DrawHUD()
@@ -43,11 +45,12 @@ void ANBHUD::DrawCrossHair()
 	float CenterX = Canvas->ClipX / 2;
 	float CenterY = Canvas->ClipY / 2;
 	float ScaleUI = Canvas->ClipY / 1080.0f;
-	float MinHudScale = 0.5f;
+	float MinHudScale = 0.2;
+	ScaleUI = ScaleUI*MinHudScale;
 
-	ScaleUI = FMath::Max(ScaleUI, MinHudScale);
+	//Draw Icon
 
-	Canvas->SetDrawColor(255, 255, 255, 192);
+	Canvas->SetDrawColor(255, 255, 255, 150);
 
 	Canvas->DrawIcon(CrosshairIcon,
 		CenterX - CrosshairIcon.UL*ScaleUI / 2.0f,

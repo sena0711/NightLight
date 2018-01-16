@@ -79,3 +79,4 @@ Saved/*
 *.pdb
 Plugins/AI_Plugin/Binaries/Win64/UE4Editor-AI_Plugin.pdb
 Plugins/AI_Plugin/Intermediate/Build/Win64/UE4Editor/Development/AI_Plugin/AI_Plugin.generated.cpp.obj.response
+/Content/DarkAmbientSoundtracks
