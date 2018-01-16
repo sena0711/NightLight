@@ -16,9 +16,21 @@ ANBPlayerController::ANBPlayerController()
 
 void ANBPlayerController::Interact()
 {
+	if (CurrentGrabable)
+	{
+		CurrentGrabable->WhenInteracted();
+	}
 	if (CurrentPickupable)
 	{
 		CurrentPickupable->Interact(this);
+	}
+}
+
+void ANBPlayerController::InteractReleased()
+{
+	if (CurrentGrabable)
+	{
+		CurrentGrabable->WhenInteractReleased();
 	}
 }
 
@@ -243,5 +255,6 @@ void ANBPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	InputComponent->BindAction("PickUp", IE_Pressed, this, &ANBPlayerController::Interact);
+	InputComponent->BindAction("PickUp", IE_Released, this, &ANBPlayerController::InteractReleased);
 }
 
