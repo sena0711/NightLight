@@ -132,6 +132,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
 		class UAnimMontage* EndCrankAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+		class UPrimitiveComponent* GrabbingComponent;
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -196,6 +199,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Calculation")
 		void UpdateSlide(float Value);
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void SetGrabbingComponent();
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void WhenCrouched();
