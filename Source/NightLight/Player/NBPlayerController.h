@@ -51,6 +51,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Interactable")
 		void PossessInteractedItem(class ABasePickupable * interactedItem);
 
+	UFUNCTION(BlueprintCallable, Category = "Quest")
+		bool WhenQuestItemIsInteracted(EQuestType eQuestType);
 
 	UFUNCTION(BlueprintCallable, Category = "Warning")
 		void SetWarningText(FName fWarningText, float flength);

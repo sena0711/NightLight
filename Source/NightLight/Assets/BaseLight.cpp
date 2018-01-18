@@ -23,6 +23,9 @@ ABaseLight::ABaseLight()
 	LightVolumeCollision->OnComponentEndOverlap.AddDynamic(this, &ABaseLight::OnEndOverlapDisableInLight);
 	LightVolumeCollision->bHiddenInGame = true;
 
+	MaxBattery = 100.0f;
+	CurrentBattery = MaxBattery;
+	bLightOnOFF = true;
 }
 
 // Called when the game starts or when spawned
@@ -31,19 +34,56 @@ void ABaseLight::BeginPlay()
 	Super::BeginPlay();
 	
 }
-
-void ABaseLight::OnOverlapEnableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
-{
-}
-
-void ABaseLight::OnEndOverlapDisableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
-{
-}
-
 // Called every frame
 void ABaseLight::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//SetLightOnOff(true);
+}
 
+void ABaseLight::OnOverlapEnableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	//TODO : Trigger Condition
+
+	WhenInLight();
+}
+
+void ABaseLight::OnEndOverlapDisableInLight(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
+	//TODO :Trigger Condition
+
+	WhenNotInLight();
+}
+
+bool ABaseLight::GetLightOnOff()
+{
+	return bLightOnOFF;
+}
+void ABaseLight::SetbLightOnOFF(bool bOnOFF)
+{
+	bLightOnOFF = bOnOFF;
+}
+bool ABaseLight::ProcessLight(bool bOnOFF)
+{
+	if (CurrentBattery <= 0.0f)
+	{
+		//NoBattery Turn Light OFF
+		bLightOnOFF = false;
+		return bLightOnOFF;
+	}
+	else
+	{	//if switch is connected 
+		if (ConnectedSwitch)
+		{
+			bLightOnOFF = ConnectedSwitch->GetSwitchOnOff();
+		}
+		else
+		{
+			SetbLightOnOFF(bOnOFF);
+		}
+		return bLightOnOFF;
+	}
+
+	return bLightOnOFF;
 }
 

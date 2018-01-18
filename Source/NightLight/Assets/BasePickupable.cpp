@@ -18,6 +18,7 @@ ABasePickupable::ABasePickupable()
 	NameOfItem = "Item";
 	NumberOfItems = 1;
 	PickedUpValue = 50;
+	QuestType = EQuestType::EDefault;
 }
 
 void ABasePickupable::Interact(class ANBPlayerController * playerController)
@@ -28,6 +29,12 @@ void ABasePickupable::Interact(class ANBPlayerController * playerController)
 EItemType ABasePickupable::GetItemType()
 {
 	return ItemType;
+}
+
+EQuestType ABasePickupable::
+GetQuestType()
+{
+	return QuestType;
 }
 
 TSubclassOf<class ABaseWeapon> ABasePickupable::GetWeaponToHold()

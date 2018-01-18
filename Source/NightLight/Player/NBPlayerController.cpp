@@ -94,12 +94,38 @@ void ANBPlayerController::PossessInteractedItem(ABasePickupable * interactedItem
 		interactedItem->Destroy();
 		break;
 	case EItemType::Quest:
-		
+		if (playerCharacter)
+		{	//Check the Quest Interacted Item needs to be destoyed if it is destroy.
+			if (WhenQuestItemIsInteracted(CurrentPickupable->GetQuestType()) == true)
+			{
+				interactedItem->Destroy();
+			}
+			else
+			{
+				//If Quest is not matching to the type we require Do nothing 
+			}
+		}
+	
 		break;
 	case EItemType::Instruction:
 
 		break;
 	default:
+		break;
+	}
+}
+bool ANBPlayerController::WhenQuestItemIsInteracted(EQuestType eQuestType)
+{
+	switch (eQuestType)
+	{
+	case EQuestType::EFruit:
+		return true;
+		break;
+	case EQuestType::EDefault:
+		return false;
+		break;
+	default:
+		return false;
 		break;
 	}
 }

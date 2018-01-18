@@ -4,6 +4,7 @@
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "TimerManager.h"
+#include "Engine/World.h"
 
 
 
@@ -17,6 +18,7 @@ ABaseGrabable::ABaseGrabable()
 	EngagingBarMaxValue = 100.0f;
 	EngagingCurrentValue = 0.0f;
 	IncrementRate = 0.5f; 
+	bEngagingComplete = false;
 
 
 	PickupMesh->SetSimulatePhysics(false);
@@ -27,29 +29,48 @@ ABaseGrabable::ABaseGrabable()
 }
 void ABaseGrabable::IncrementEngagingCurrentValue(float Val)
 {
-	IncrementValue = Val;
-	GetWorldTimerManager().SetTimer(AddEngagingValueTimerHandle, this, &ABaseGrabable::AddToEngagingCurrentValue, IncrementRate, true);
+	if (bEngagingComplete == false)
+	{
+		IncrementValue = Val;
+		GetWorldTimerManager().SetTimer(AddEngagingValueTimerHandle, this, &ABaseGrabable::AddToEngagingCurrentValue, IncrementRate, true);
+	}
 }
 
 void ABaseGrabable::AddToEngagingCurrentValue()
 {
-	if (EngagingCurrentValue > EngagingBarMaxValue)
+	if (bEngagingComplete == false)
 	{
-		EngagingCurrentValue = EngagingBarMaxValue;
-		bEngagingOn = false; 
-		GetWorldTimerManager().ClearTimer(AddEngagingValueTimerHandle);
+		if (EngagingCurrentValue > EngagingBarMaxValue)
+		{
+			EngagingCurrentValue = EngagingBarMaxValue;
+			bEngagingComplete = true;
+			bEngagingOn = false;
+			GetWorldTimerManager().ClearTimer(AddEngagingValueTimerHandle);
+			WhenEngagingComplete();
+		}
+		else if (EngagingCurrentValue < 0.0f)
+		{
+			EngagingCurrentValue = 0.0f;
+			bEngagingOn = false;
+			GetWorldTimerManager().ClearTimer(AddEngagingValueTimerHandle);
+		}
+		else
+		{
+			EngagingCurrentValue = EngagingCurrentValue + IncrementValue;
+		}
 	}
-	else if (EngagingCurrentValue < 0.0f)
+}
+void ABaseGrabable::SpawnGrabable(TSubclassOf<class ABaseGrabable> SpawnObj)
+{
+	FActorSpawnParameters SpawnParams;
+	// if current weapon is empty assign current weapon
+	if (SpawnObj != nullptr)
 	{
-		EngagingCurrentValue = 0.0f;
-		bEngagingOn = false;
-		GetWorldTimerManager().ClearTimer(AddEngagingValueTimerHandle);
+		SpawnObject = GetWorld()->SpawnActor<ABaseGrabable>(SpawnObj, SpawnParams);
+		//CurrentWeapon->SetOwningPawn(this);
 	}
-	else
-	{
 
-		EngagingCurrentValue = EngagingCurrentValue + IncrementValue;
-	}
+
 }
 
 // Called every frame
