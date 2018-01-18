@@ -22,19 +22,25 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Text)
 		FName NameOfItem;
-	/*When enging is on it will increment its value machine*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
-		bool bEngagingOn;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Engaging)
-		float EngagingBarMaxValue;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Engaging)
-		float EngagingCurrentValue;
 
-	UFUNCTION(BlueprintCallable, Category = "PickupCondition")
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
 		void IncrementEngagingCurrentValue(float IncrementVal);
 
 	//ShowWarning On screen
 	FTimerHandle AddEngagingValueTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		bool bEngagingComplete;
+	/*When enging is on it will increment its value machine*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		bool bEngagingOn;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		float EngagingBarMaxValue;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		float EngagingCurrentValue;
+
+
+
 private:
 	/*PrivateValue used for incrementation*/
 	float IncrementValue;
@@ -42,8 +48,9 @@ private:
 	UFUNCTION()
 		void AddToEngagingCurrentValue();
 
-
+	
 public:
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
 		bool bHoldable;
@@ -51,6 +58,25 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
 		class UStaticMeshComponent* SecondaryMesh;
 
+	
+
+	/************************************************************************/
+	/* SpawnClass                                                       */
+	/************************************************************************/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		class ABaseGrabable *SpawnObject;
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+		void SpawnGrabable(TSubclassOf <class ABaseGrabable> SpawnObj);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		TSubclassOf <class ABaseGrabable> SpawnClassOne;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+		TSubclassOf <class ABaseGrabable> SpawnClassTwo;
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void WhenEngagingComplete();
 
 public:
 	// Called every frame

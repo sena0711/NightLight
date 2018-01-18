@@ -19,24 +19,20 @@ class NIGHTLIGHT_API ABasePickupable : public ABaseGrabable
 protected:
 		ABasePickupable();
 
-		////vectorlength/ volumeMultiplierValue
-		//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
-		//	FName InteractText;
-
-		//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
-		//	FName NameOfItem;
-
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			EItemType ItemType;
 		/*If the itemtype is weapon Which weapon*/
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 			TSubclassOf <class ABaseWeapon> WeaponToHold;
 		/*Related Value - float*/
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 			float PickedUpValue;
 		/*If the itemtype is bullet Which bullet*/
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
 			EBulletType BulletTypes;
+		/*If the itemtype Quest which Quest*/
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
+			EQuestType QuestType;
 
 public:
 
@@ -45,7 +41,10 @@ public:
 
 	EItemType GetItemType();
 
+	EQuestType GetQuestType();
+
 	TSubclassOf <class ABaseWeapon> GetWeaponToHold();
+
 	//stack goes up. 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Interact)
 		int32 NumberOfItems;
@@ -56,7 +55,5 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		FName GetNameOfItem();
 
-	//UFUNCTION(BlueprintImplementableEvent)
-	//	void NotInFocus();
 	
 };

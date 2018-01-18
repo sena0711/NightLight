@@ -111,6 +111,14 @@ public:
 	}
 };
 
+/*Quest Item Type*/
+UENUM(BlueprintType)
+enum class EQuestType : uint8
+{
+	EFruit,
+
+	EDefault
+};
 
 UENUM(BlueprintType)
 enum class EItemType : uint8
