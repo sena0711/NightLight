@@ -17,15 +17,11 @@ ABaseGrabable::ABaseGrabable()
 	bEngagingOn = false;
 	EngagingBarMaxValue = 100.0f;
 	EngagingCurrentValue = 0.0f;
-	IncrementRate = 0.5f; 
+	IncrementRate = 0.5f;
 	bEngagingComplete = false;
 
 
 	PickupMesh->SetSimulatePhysics(false);
-	SecondaryMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SecondaryMesh"));
-	SecondaryMesh->SetRelativeLocation(FVector(0.0, 0.0, 0.0));
-	SecondaryMesh->SetSimulatePhysics(false);
-	SecondaryMesh->SetupAttachment(PickupMesh);
 }
 void ABaseGrabable::IncrementEngagingCurrentValue(float Val)
 {
@@ -81,8 +77,6 @@ void ABaseGrabable::Tick(float DeltaTime)
 }
 FVector ABaseGrabable::GetLocationOfMesh()
 {
-	SecondaryMesh->GetComponentLocation();
-
 	return GetActorLocation();
 }
 

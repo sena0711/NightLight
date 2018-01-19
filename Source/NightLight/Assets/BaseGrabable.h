@@ -54,11 +54,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Config)
 		bool bHoldable;
-	//we use this for things like door
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Colllision")
-		class UStaticMeshComponent* SecondaryMesh;
-
-	
 
 	/************************************************************************/
 	/* SpawnClass                                                       */
