@@ -29,6 +29,7 @@ void ABaseSwitch::SetSwitchOnOff(bool bSwithchOnOff)
 
 void ABaseSwitch::ToggleSwitchOnOff()
 {
+	
 	/*if it is true becomes false...false to true*/
 	bSwitchOnOFF = !bSwitchOnOFF;
 }
