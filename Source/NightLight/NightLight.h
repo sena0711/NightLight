@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "EngineMinimal.h"
 
 #define WEAPON_TRACE				ECC_GameTraceChannel1
 

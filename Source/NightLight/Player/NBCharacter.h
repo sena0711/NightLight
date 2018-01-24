@@ -91,9 +91,9 @@ protected:
 	/** Stops adding left mouse input */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Camera)
 		bool bStopDownMouseInput;
-	UPROPERTY(EditDefaultsOnly, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bJumpButtonDown;
-	UPROPERTY(EditDefaultsOnly, Category = Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 		bool bCrouchButtonDown;
 
 	/** current firing state */
