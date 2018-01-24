@@ -211,3 +211,60 @@ bool UKeyBindingUtil::RebindActionKey(FInputAction CurrentBinding, FInputAction 
 	return Found;
 }
 
+bool UKeyBindingUtil::AddActionBinding(FInputAction NewBinding, FInputAction CurrentBinding)
+{
+	UInputSettings* Settings = const_cast<UInputSettings*>(GetDefault<UInputSettings>());
+	if (!Settings)
+	{
+		return false;
+	}
+
+	TArray<FInputActionKeyMapping>& Actions = Settings->ActionMappings;
+	int32 ActionIndex = Actions.AddUnique(FInputActionKeyMapping(FName(*CurrentBinding.ActionName),
+		NewBinding.Key,
+		NewBinding.bShift,
+		NewBinding.bCtrl,
+		NewBinding.bAlt,
+		NewBinding.bCmd));
+
+	bool bOk = ActionIndex > 0 ? true : false;
+	if (bOk)
+	{
+		const_cast<UInputSettings*>(Settings)->SaveKeyMappings();
+
+		for (TObjectIterator<UPlayerInput> It; It; ++It)
+		{
+			It->ForceRebuildingKeyMaps(true);
+		}
+	}
+
+	return bOk;
+}
+
+bool UKeyBindingUtil::AddAxisBinding(FInputAxis NewBinding, FInputAxis CurrentBinding)
+{
+	UInputSettings* Settings = const_cast<UInputSettings*>(GetDefault<UInputSettings>());
+	if (!Settings)
+	{
+		return false;
+	}
+
+	TArray<FInputAxisKeyMapping>& Axis = Settings->AxisMappings;
+	int32 AxisIndex = Axis.AddUnique(FInputAxisKeyMapping(FName(*CurrentBinding.AxisName),
+		NewBinding.Key,
+		NewBinding.Scale));
+
+	bool bOk = AxisIndex > 0 ? true : false;
+	if (bOk)
+	{
+		const_cast<UInputSettings*>(Settings)->SaveKeyMappings();
+
+		for (TObjectIterator<UPlayerInput> It; It; ++It)
+		{
+			It->ForceRebuildingKeyMaps(true);
+		}
+	}
+
+	return bOk;
+}
+

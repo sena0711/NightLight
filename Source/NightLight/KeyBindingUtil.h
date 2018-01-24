@@ -135,6 +135,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Key Bindings")
 		static bool RebindActionKey(FInputAction CurrentBinding, FInputAction NewBinding);
 
+	UFUNCTION(BlueprintPure, Category = "Key Bindings")
+		static bool AddActionBinding(FInputAction NewBinding, FInputAction CurrentBinding);
+
+	UFUNCTION(BlueprintPure, Category = "Key Bindings")
+		static bool AddAxisBinding(FInputAxis NewBinding, FInputAxis CurrentBinding);
+
 
 private:
 	static void UpdateAxisBinding(const FInputAxis& SrcInputAxis, FInputAxisKeyMapping& DstInputAxis);
