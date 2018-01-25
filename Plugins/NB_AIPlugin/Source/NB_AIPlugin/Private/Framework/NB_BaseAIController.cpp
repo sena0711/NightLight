@@ -9,6 +9,7 @@
 
 ANB_BaseAIController::ANB_BaseAIController()
 {
+	
 	BehaviorTreeComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTreeComp"));
 	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
 }
