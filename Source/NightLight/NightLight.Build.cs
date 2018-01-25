@@ -9,5 +9,7 @@ public class NightLight : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "SlateCore"});
-	}
+        PrivateDependencyModuleNames.AddRange(new string[] { "NB_AIPlugin" });
+
+    }
 }

@@ -8,15 +8,16 @@
 			"Name": "NightLight",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine"
-			]
+      "AdditionalDependencies": [
+        "Engine",
+        "NB_AIPlugin"
+      ]
 		}
 	],
 	"Plugins": [
-		{
-			"Name": "UObjectPlugin",
-			"Enabled": false
-		}
+    {
+      "Name": "NB_AIPlugin",
+      "Enabled": true
+    }
 	]
 }
