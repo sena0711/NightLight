@@ -37,7 +37,7 @@ public: \
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ANB_BaseAIController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API ANB_BaseAIController(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ANB_BaseAIController) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ANB_BaseAIController); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ANB_BaseAIController); \
@@ -49,8 +49,6 @@ public:
 
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ANB_BaseAIController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ANB_BaseAIController(ANB_BaseAIController&&); \
@@ -58,7 +56,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ANB_BaseAIController); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ANB_BaseAIController); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ANB_BaseAIController)
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ANB_BaseAIController)
 
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_PRIVATE_PROPERTY_OFFSET
