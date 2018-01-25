@@ -3,7 +3,7 @@
 /MACHINE:x64
 /SUBSYSTEM:WINDOWS
 /DEF
-/NAME:"UE4Editor-NB_AIPlugin.dll"
+/NAME:"UE4Editor-NB_AIPlugin-642.dll"
 /IGNORE:4221
 /NODEFAULTLIB
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
@@ -11,4 +11,4 @@
 "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp.obj"
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\PCLaunch.rc.res"
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
-/OUT:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-NB_AIPlugin.lib"
+/OUT:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-NB_AIPlugin-642.lib"

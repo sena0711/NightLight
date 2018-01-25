@@ -61,7 +61,7 @@
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-SlateCore.lib"
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-AIModule.lib"
 "C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Core.lib"
-/OUT:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Binaries\Win64\UE4Editor-NB_AIPlugin.dll"
-/IMPLIB:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-NB_AIPlugin.suppressed.lib"
-/PDB:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Binaries\Win64\UE4Editor-NB_AIPlugin.pdb"
+/OUT:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Binaries\Win64\UE4Editor-NB_AIPlugin-642.dll"
+/IMPLIB:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-NB_AIPlugin-642.suppressed.lib"
+/PDB:"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Binaries\Win64\UE4Editor-NB_AIPlugin-642.pdb"
 /ignore:4078

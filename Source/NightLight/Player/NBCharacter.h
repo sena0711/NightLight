@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "NB_AIPlugin/Public/Framework/NB_BaseCharacter.h"
-//#include "Player/BaseCharacter.h"
 #include "NBCharacter.generated.h"
-//#include "../Assets/BaseTorch.h"
+
 /**
  * 
  */
