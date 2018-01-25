@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Player/BaseCharacter.h"
+#include "NB_AIPlugin/Public/Framework/NB_BaseCharacter.h"
+//#include "Player/BaseCharacter.h"
 #include "NBCharacter.generated.h"
 //#include "../Assets/BaseTorch.h"
 /**
@@ -32,7 +33,7 @@ enum class ESideLookingDirection : uint8
 
 
 UCLASS()
-class ANBCharacter : public ABaseCharacter
+class ANBCharacter : public ANB_BaseCharacter
 {
 	GENERATED_BODY()
 
