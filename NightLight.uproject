@@ -8,15 +8,16 @@
 			"Name": "NightLight",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine"
-			]
+      "AdditionalDependencies": [
+        "Engine",
+        "NB_AIPlugin"
+      ]
 		}
 	],
 	"Plugins": [
-		{
-			"Name": "OnlineSubsystemSteam",
-			"Enabled": true
-		}
+    {
+      "Name": "NB_AIPlugin",
+      "Enabled": true
+    }
 	]
 }
