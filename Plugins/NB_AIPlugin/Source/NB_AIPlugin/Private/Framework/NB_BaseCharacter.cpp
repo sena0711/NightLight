@@ -12,6 +12,8 @@ ANB_BaseCharacter::ANB_BaseCharacter()
 	bIsAlive = true;
 	MaxHealth = 100.0f;
 	CurrentHealth = MaxHealth;
+	CurrentState = EAIBehaviorType::Neutral;
+
 }
 
 // Called when the game starts or when spawned
