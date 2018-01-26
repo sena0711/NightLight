@@ -50,11 +50,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		void ReduceHealth(float ReductionValue);
 
-
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		bool GainStamina(float GainValue);
 
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		void ReduceStamina(float ReductionValue);
-
 };
