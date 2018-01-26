@@ -4,4 +4,7 @@
 
 
 
+ANB_AICharacter::ANB_AICharacter()
+{
 
+}

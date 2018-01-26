@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AITypeClass.h"
 #include "GameFramework/Character.h"
 #include "NB_BaseCharacter.generated.h"
 
@@ -30,6 +31,9 @@ protected:
 		float CurrentStamina;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
 		float MaxStamina;
+
+	UPROPERTY(VisibleAnywhere, Category = "AI")
+		EAIBehaviorType CurrentState;
 private:
 	/** is character alive use Get bisalive for update */
 	bool bIsAlive;
@@ -55,4 +59,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		void ReduceStamina(float ReductionValue);
+
+
+	
 };

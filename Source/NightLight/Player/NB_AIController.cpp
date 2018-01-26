@@ -3,12 +3,7 @@
 #include "NB_AIController.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
-//#include "GameFramework/Character.h"
-#include "BehaviorTree/BlackboardComponent.h"
 
-#include "NB_AICharacter.h"
-#include "BehaviorTree/BehaviorTree.h"
-#include "BehaviorTree/BehaviorTreeComponent.h"
 ANB_AIController::ANB_AIController()
 {
 	PlayerCharacterKeyName = "PlayerCharacter";

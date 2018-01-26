@@ -29,6 +29,8 @@ protected:
 	/* Plays the idle, wandering or hunting sound */
 	UPROPERTY(VisibleAnywhere, Category = "Sound")
 		UAudioComponent* AudioLoopComp;
+
+
 		/* Triggered by pawn sensing component when a pawn is spotted */
 		/* When using functions as delegates they need to be marked with UFUNCTION(). We assign this function to FSeePawnDelegate */
 public :
@@ -43,4 +45,9 @@ public :
 	FORCEINLINE UBehaviorTree* GetBehaviorTree() const { return BehaviorTree; }
 	//FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
 	
+
+	//Set AI State  using EBotBehaviorType
+	UFUNCTION(BlueprintCallable, Category = "AI")
+		void SetAIState(EAIBehaviorType AIState);
+
 };

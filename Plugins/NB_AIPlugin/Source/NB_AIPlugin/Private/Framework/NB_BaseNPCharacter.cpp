@@ -21,6 +21,7 @@ ANB_BaseNPCharacter::ANB_BaseNPCharacter()
 	PawnSensingComp->SightRadius = 2000;
 	PawnSensingComp->HearingThreshold = 600;
 	PawnSensingComp->LOSHearingThreshold = 1200;
+	
 }
 void ANB_BaseNPCharacter::OnSeePlayer(APawn * Pawn)
 {	
@@ -28,4 +29,9 @@ void ANB_BaseNPCharacter::OnSeePlayer(APawn * Pawn)
 
 void ANB_BaseNPCharacter::OnHearNoise(APawn * PawnInstigator, const FVector & Location, float Volume)
 {
+}
+
+void ANB_BaseNPCharacter::SetAIState(EAIBehaviorType AIState)
+{
+	CurrentState = AIState;
 }

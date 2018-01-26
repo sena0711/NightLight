@@ -22,6 +22,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GetbIsAlive();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_ReduceHealth();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_ReduceStamina();
+	NB_AIPLUGIN_API UEnum* Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType();
 // End Cross Module References
 	void ANB_BaseCharacter::StaticRegisterNativesANB_BaseCharacter()
 	{
@@ -192,6 +193,14 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 			};
 #endif
 #if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CurrentState_MetaData[] = {
+				{ "Category", "AI" },
+				{ "ModuleRelativePath", "Public/Framework/NB_BaseCharacter.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_CurrentState = { UE4CodeGen_Private::EPropertyClass::Enum, "CurrentState", RF_Public|RF_Transient|RF_MarkAsNative, 0x0020080000020001, 1, nullptr, STRUCT_OFFSET(ANB_BaseCharacter, CurrentState), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(NewProp_CurrentState_MetaData, ARRAY_COUNT(NewProp_CurrentState_MetaData)) };
+			static const UE4CodeGen_Private::FBytePropertyParams NewProp_CurrentState_Underlying = { UE4CodeGen_Private::EPropertyClass::Byte, "UnderlyingType", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxStamina_MetaData[] = {
 				{ "Category", "Status" },
 				{ "ModuleRelativePath", "Public/Framework/NB_BaseCharacter.h" },
@@ -222,6 +231,8 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 #endif
 			static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth = { UE4CodeGen_Private::EPropertyClass::Float, "CurrentHealth", RF_Public|RF_Transient|RF_MarkAsNative, 0x0020080000000015, 1, nullptr, STRUCT_OFFSET(ANB_BaseCharacter, CurrentHealth), METADATA_PARAMS(NewProp_CurrentHealth_MetaData, ARRAY_COUNT(NewProp_CurrentHealth_MetaData)) };
 			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CurrentState,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CurrentState_Underlying,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_MaxStamina,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CurrentStamina,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_MaxHealth,
@@ -245,7 +256,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANB_BaseCharacter, 741266084);
+	IMPLEMENT_CLASS(ANB_BaseCharacter, 836640212);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ANB_BaseCharacter(Z_Construct_UClass_ANB_BaseCharacter, &ANB_BaseCharacter::StaticClass, TEXT("/Script/NB_AIPlugin"), TEXT("ANB_BaseCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ANB_BaseCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
