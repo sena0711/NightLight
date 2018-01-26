@@ -28,6 +28,8 @@ public class NB_AIPlugin : ModuleRules
 			new string[]
 			{
 				"Core",
+                    
+                 
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -40,8 +42,10 @@ public class NB_AIPlugin : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+                "AIModule"
+            
 
-                 "AIModule"
+               
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

@@ -59,7 +59,11 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ANB_BaseAIController); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ANB_BaseAIController)
 
 
-#define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_PRIVATE_PROPERTY_OFFSET
+#define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__BehaviorTreeComp() { return STRUCT_OFFSET(ANB_BaseAIController, BehaviorTreeComp); } \
+	FORCEINLINE static uint32 __PPO__BlackboardComp() { return STRUCT_OFFSET(ANB_BaseAIController, BlackboardComp); }
+
+
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_12_PROLOG
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseAIController_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseAIController() {}
 	NB_AIPLUGIN_API UClass* Z_Construct_UClass_ANB_BaseAIController();
 	AIMODULE_API UClass* Z_Construct_UClass_AAIController();
 	UPackage* Z_Construct_UPackage__Script_NB_AIPlugin();
+	AIMODULE_API UClass* Z_Construct_UClass_UBlackboardComponent_NoRegister();
+	AIMODULE_API UClass* Z_Construct_UClass_UBehaviorTreeComponent_NoRegister();
 // End Cross Module References
 	void ANB_BaseAIController::StaticRegisterNativesANB_BaseAIController()
 	{
@@ -41,6 +43,28 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseAIController() {}
 				{ "ModuleRelativePath", "Public/Framework/NB_BaseAIController.h" },
 			};
 #endif
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BlackboardComp_MetaData[] = {
+				{ "Category", "AI" },
+				{ "EditInline", "true" },
+				{ "ModuleRelativePath", "Public/Framework/NB_BaseAIController.h" },
+				{ "ToolTip", "Blackboard component reference" },
+			};
+#endif
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BlackboardComp = { UE4CodeGen_Private::EPropertyClass::Object, "BlackboardComp", RF_Public|RF_Transient|RF_MarkAsNative, 0x00200800000a0009, 1, nullptr, STRUCT_OFFSET(ANB_BaseAIController, BlackboardComp), Z_Construct_UClass_UBlackboardComponent_NoRegister, METADATA_PARAMS(NewProp_BlackboardComp_MetaData, ARRAY_COUNT(NewProp_BlackboardComp_MetaData)) };
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BehaviorTreeComp_MetaData[] = {
+				{ "Category", "AI" },
+				{ "EditInline", "true" },
+				{ "ModuleRelativePath", "Public/Framework/NB_BaseAIController.h" },
+				{ "ToolTip", "Behavior tree component" },
+			};
+#endif
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BehaviorTreeComp = { UE4CodeGen_Private::EPropertyClass::Object, "BehaviorTreeComp", RF_Public|RF_Transient|RF_MarkAsNative, 0x00200800000a0009, 1, nullptr, STRUCT_OFFSET(ANB_BaseAIController, BehaviorTreeComp), Z_Construct_UClass_UBehaviorTreeComponent_NoRegister, METADATA_PARAMS(NewProp_BehaviorTreeComp_MetaData, ARRAY_COUNT(NewProp_BehaviorTreeComp_MetaData)) };
+			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BlackboardComp,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BehaviorTreeComp,
+			};
 			static const FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 				TCppClassTypeTraits<ANB_BaseAIController>::IsAbstract,
 			};
@@ -49,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseAIController() {}
 				DependentSingletons, ARRAY_COUNT(DependentSingletons),
 				0x00900280u,
 				nullptr, 0,
-				nullptr, 0,
+				PropPointers, ARRAY_COUNT(PropPointers),
 				nullptr,
 				&StaticCppClassTypeInfo,
 				nullptr, 0,
@@ -59,7 +83,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseAIController() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANB_BaseAIController, 4009452621);
+	IMPLEMENT_CLASS(ANB_BaseAIController, 3553836591);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ANB_BaseAIController(Z_Construct_UClass_ANB_BaseAIController, &ANB_BaseAIController::StaticClass, TEXT("/Script/NB_AIPlugin"), TEXT("ANB_BaseAIController"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ANB_BaseAIController);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

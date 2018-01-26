@@ -5,9 +5,10 @@ using System.Collections.Generic;
 
 public class NightLightTarget : TargetRules
 {
-	public NightLightTarget(TargetInfo Target) : base(Target)
-	{
-		Type = TargetType.Game;
-		ExtraModuleNames.Add("NightLight");
-	}
+    public NightLightTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Game;
+        ExtraModuleNames.Add("NightLight");
+        bUsesSteam = true;
+    }
 }

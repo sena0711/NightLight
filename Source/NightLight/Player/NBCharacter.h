@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "NB_AIPlugin/Public/Framework/NB_BaseCharacter.h"
+#include "Framework/NB_BaseCharacter.h"
 #include "NBCharacter.generated.h"
 
 /**

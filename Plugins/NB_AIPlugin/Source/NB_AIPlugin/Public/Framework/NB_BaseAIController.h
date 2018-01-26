@@ -13,17 +13,18 @@ UCLASS()
 class NB_AIPLUGIN_API ANB_BaseAIController : public AAIController
 {
 	GENERATED_BODY()
-	
-	
-		ANB_BaseAIController();
+public:
+	ANB_BaseAIController();
 
 	/* Called whenever the controller possesses a character bot */
 
 protected:
 	// Behavior tree component
-	class UBehaviorTreeComponent* BehaviorTreeComp;
+	UPROPERTY(VisibleAnywhere, Category = "AI")
+		class UBehaviorTreeComponent* BehaviorTreeComp;
 	// Blackboard component reference
-	class UBlackboardComponent* BlackboardComp;
+	UPROPERTY(VisibleAnywhere, Category = "AI")
+		class UBlackboardComponent* BlackboardComp;
 
 public :
 	// Called when the game starts or when spawned
