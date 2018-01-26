@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../Core/TypeClass.h"
 #include "Framework/NB_BaseNPCharacter.h"
 #include "NB_AICharacter.generated.h"
 
@@ -36,6 +37,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
 		class UAnimMontage* StunAnimation;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Status")
+		ENPCPersonality NPCPersonality; 
 protected:
 
 	////Set AI State  using EBotBehaviorType

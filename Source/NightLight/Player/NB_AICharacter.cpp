@@ -6,5 +6,5 @@
 
 ANB_AICharacter::ANB_AICharacter()
 {
-
+	NPCPersonality = ENPCPersonality::Shy;
 }
