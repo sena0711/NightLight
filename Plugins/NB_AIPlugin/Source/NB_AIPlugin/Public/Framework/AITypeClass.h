@@ -1,4 +1,7 @@
 
+
+#pragma once
+
 #include "NB_AIPlugin.h"
 #include "Engine.h"
 #include "ModuleManager.h"
