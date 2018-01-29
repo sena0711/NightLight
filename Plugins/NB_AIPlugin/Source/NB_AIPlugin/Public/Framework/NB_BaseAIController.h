@@ -32,6 +32,8 @@ public :
 	virtual void Possess(class APawn* InPawn) override;
 	virtual void UnPossess() override;
 
+	void SetObjectKey(FName ObjectKeyName, APawn* ObjectReference);
+
 	/** Returns BehaviorComp subobject **/
 	FORCEINLINE UBehaviorTreeComponent* GetBehaviorComp() const { return BehaviorTreeComp; }
 	FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }

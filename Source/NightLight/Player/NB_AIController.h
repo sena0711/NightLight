@@ -28,6 +28,13 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		FName SelfActorKeyName;
-
 	
+
+public:
+
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	//virtual void Possess(class APawn* InPawn) override;
+	//virtual void UnPossess() override;
+
 };
