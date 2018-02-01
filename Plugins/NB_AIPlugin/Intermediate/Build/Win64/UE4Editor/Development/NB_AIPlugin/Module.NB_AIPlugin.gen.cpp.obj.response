@@ -23,12 +23,12 @@
 /wd4838
 /w44668
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Private"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Source"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Framework"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin"
-/I "D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin"
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Private
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Source
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Framework
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin
+/I D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public"
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public\Internationalization"
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public\Async"
@@ -361,9 +361,9 @@
 /FI"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Yu"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Fp"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.pch"
-"D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp"
-/FI"D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Definitions.NB_AIPlugin.h"
-/Fo"D:\Users\xandre.duplooy\Documents\NoBark Studios Ltd Night Light\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp.obj"
+"D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp"
+/FI"D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Definitions.NB_AIPlugin.h"
+/Fo"D:\Users\zack.lim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp.obj"
 /TP
 /GR-
 /W4
