@@ -44,10 +44,4 @@ public :
 	/** Returns BehaviorComp subobject **/
 	FORCEINLINE UBehaviorTree* GetBehaviorTree() const { return BehaviorTree; }
 	//FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
-	
-
-	//Set AI State  using EBotBehaviorType
-	UFUNCTION(BlueprintCallable, Category = "AI")
-		void SetAIState(EAIBehaviorType AIState);
-
 };

@@ -26,7 +26,7 @@ ABaseWeapon::ABaseWeapon()
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.TickGroup = TG_PrePhysics;
 
-	CurrentState = EWeaponState::Idle;
+	WeaponState = EWeaponState::Idle;
 	MuzzleAttachPoint = TEXT("MuzzleSocket");
 
 	WeaponConfig.MaxAmmoPerClip = 10;
@@ -140,8 +140,8 @@ void ABaseWeapon::SetOwningPawn(ANBCharacter * NewOwner)
 
 void ABaseWeapon::SetWeaponState(EWeaponState NewState)
 {
-	CurrentState = NewState;
-	switch (CurrentState)
+	WeaponState = NewState;
+	switch (WeaponState)
 	{
 	case EWeaponState::Idle:
 		break;
@@ -160,8 +160,8 @@ void ABaseWeapon::SetWeaponState(EWeaponState NewState)
 void ABaseWeapon::DetermineWeaponState(EWeaponState NextState)
 {
 	bool AcceptNewState = true;
-
-	switch (CurrentState)
+	
+	switch (WeaponState)
 	{
 	case EWeaponState::Idle:
 		if (NextState == EWeaponState::Idle || NextState == EWeaponState::Firing ||

@@ -8,7 +8,6 @@
 #include "ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-enum class EAIBehaviorType : uint8;
 class APawn;
 struct FVector;
 #ifdef NB_AIPLUGIN_NB_BaseNPCharacter_generated_h
@@ -17,15 +16,6 @@ struct FVector;
 #define NB_AIPLUGIN_NB_BaseNPCharacter_generated_h
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseNPCharacter_h_15_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execSetAIState) \
-	{ \
-		P_GET_ENUM(EAIBehaviorType,Z_Param_AIState); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		this->SetAIState(EAIBehaviorType(Z_Param_AIState)); \
-		P_NATIVE_END; \
-	} \
  \
 	DECLARE_FUNCTION(execOnHearNoise) \
 	{ \
@@ -49,15 +39,6 @@ struct FVector;
 
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseNPCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execSetAIState) \
-	{ \
-		P_GET_ENUM(EAIBehaviorType,Z_Param_AIState); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		this->SetAIState(EAIBehaviorType(Z_Param_AIState)); \
-		P_NATIVE_END; \
-	} \
  \
 	DECLARE_FUNCTION(execOnHearNoise) \
 	{ \

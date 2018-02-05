@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include "AITypeClass.h"
 #include "NB_BaseAIController.generated.h"
 
 /**
@@ -32,7 +33,19 @@ public :
 	virtual void Possess(class APawn* InPawn) override;
 	virtual void UnPossess() override;
 
-	void SetObjectKey(FName ObjectKeyName, APawn* ObjectReference);
+	//sets All keys in the blackboard
+	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
+		void ResetBlackBoardKeys(FName ObjectKeyName, FName AIStateKeyName, FName VectorKeyName);
+
+	//sets keys in the blackboard
+	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
+		void SetObjectKey(FName ObjectKeyName, APawn* ObjectReference);
+	//sets AIState keys in the blackboard
+	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
+		void SetAIStateKey(FName AIStateKeyName, EAIBehaviorType NewState);
+	//sets AIState keys in the blackboard
+	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
+		void SetVectorKey(FName VectorKeyName, FVector NewVector);
 
 	/** Returns BehaviorComp subobject **/
 	FORCEINLINE UBehaviorTreeComponent* GetBehaviorComp() const { return BehaviorTreeComp; }
