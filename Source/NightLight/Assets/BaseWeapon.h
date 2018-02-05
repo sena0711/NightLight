@@ -40,7 +40,7 @@ private:
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
-		EWeaponState CurrentState;
+		EWeaponState WeaponState;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Owning")
 		class ANBCharacter* MyPawn;

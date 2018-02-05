@@ -37,4 +37,8 @@ public:
 	//virtual void Possess(class APawn* InPawn) override;
 	//virtual void UnPossess() override;
 
+	//sets AI State and also black board key
+	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
+		void SetAIBehaviorStateAndKey(EAIBehaviorType NewState);
+
 };

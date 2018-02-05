@@ -49,11 +49,44 @@ void ANB_BaseAIController::UnPossess()
 	/* Stop any behavior running as we no longer have a pawn to control */
 	BehaviorTreeComp->StopTree();
 }
-
+void ANB_BaseAIController::ResetBlackBoardKeys(FName ObjectKeyName, FName AIStateKeyName, FName VectorKeyName)
+{
+	if (APawn* PlayerCharacter = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn())
+	{
+		if (ObjectKeyName != "")
+		{
+			SetObjectKey(ObjectKeyName, PlayerCharacter);
+		}
+	}
+	if (ANB_BaseCharacter* AICharacter = Cast<ANB_BaseCharacter>(GetPawn()))
+	{
+		if (AIStateKeyName != "")
+		{
+			SetAIStateKey(AIStateKeyName, AICharacter->GetCurrentBehaviorState());
+		}
+	}
+}
 void ANB_BaseAIController::SetObjectKey(FName ObjectKeyName, APawn * ObjectReference)
 {
 	if (BlackboardComp)
 	{
 		BlackboardComp->SetValueAsObject(ObjectKeyName, ObjectReference);
+	}
+}
+void ANB_BaseAIController::SetAIStateKey(FName AIStateKeyName, EAIBehaviorType NewState)
+{
+	uint8 temp;
+	if (BlackboardComp)
+	{
+		temp = static_cast<uint8>(NewState);
+		BlackboardComp->SetValueAsEnum(AIStateKeyName, temp);
+	}
+}
+
+void ANB_BaseAIController::SetVectorKey(FName VectorKeyName, FVector NewVector)
+{
+	if (BlackboardComp)
+	{
+		BlackboardComp->SetValueAsVector(VectorKeyName, NewVector);
 	}
 }

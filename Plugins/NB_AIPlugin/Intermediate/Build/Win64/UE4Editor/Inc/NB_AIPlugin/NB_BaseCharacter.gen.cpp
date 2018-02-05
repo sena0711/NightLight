@@ -20,9 +20,11 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GainHealth();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GainStamina();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GetbIsAlive();
+	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GetCurrentBehaviorState();
+	NB_AIPLUGIN_API UEnum* Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_ReduceHealth();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_ReduceStamina();
-	NB_AIPLUGIN_API UEnum* Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType();
+	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseCharacter_SetCurrentBehaviorState();
 // End Cross Module References
 	void ANB_BaseCharacter::StaticRegisterNativesANB_BaseCharacter()
 	{
@@ -31,8 +33,10 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 			{ "GainHealth", (Native)&ANB_BaseCharacter::execGainHealth },
 			{ "GainStamina", (Native)&ANB_BaseCharacter::execGainStamina },
 			{ "GetbIsAlive", (Native)&ANB_BaseCharacter::execGetbIsAlive },
+			{ "GetCurrentBehaviorState", (Native)&ANB_BaseCharacter::execGetCurrentBehaviorState },
 			{ "ReduceHealth", (Native)&ANB_BaseCharacter::execReduceHealth },
 			{ "ReduceStamina", (Native)&ANB_BaseCharacter::execReduceStamina },
+			{ "SetCurrentBehaviorState", (Native)&ANB_BaseCharacter::execSetCurrentBehaviorState },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
 	}
@@ -117,6 +121,33 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	UFunction* Z_Construct_UFunction_ANB_BaseCharacter_GetCurrentBehaviorState()
+	{
+		struct NB_BaseCharacter_eventGetCurrentBehaviorState_Parms
+		{
+			EAIBehaviorType ReturnValue;
+		};
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_ReturnValue = { UE4CodeGen_Private::EPropertyClass::Enum, "ReturnValue", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000580, 1, nullptr, STRUCT_OFFSET(NB_BaseCharacter_eventGetCurrentBehaviorState_Parms, ReturnValue), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FBytePropertyParams NewProp_ReturnValue_Underlying = { UE4CodeGen_Private::EPropertyClass::Byte, "UnderlyingType", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_ReturnValue,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_ReturnValue_Underlying,
+			};
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "Category", "AI" },
+				{ "ModuleRelativePath", "Public/Framework/NB_BaseCharacter.h" },
+				{ "ToolTip", "Set AI State  using EBotBehaviorType" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_ANB_BaseCharacter, "GetCurrentBehaviorState", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x04020401, sizeof(NB_BaseCharacter_eventGetCurrentBehaviorState_Parms), PropPointers, ARRAY_COUNT(PropPointers), 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UFunction* Z_Construct_UFunction_ANB_BaseCharacter_ReduceHealth()
 	{
 		struct NB_BaseCharacter_eventReduceHealth_Parms
@@ -165,6 +196,33 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	UFunction* Z_Construct_UFunction_ANB_BaseCharacter_SetCurrentBehaviorState()
+	{
+		struct NB_BaseCharacter_eventSetCurrentBehaviorState_Parms
+		{
+			EAIBehaviorType AIState;
+		};
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_AIState = { UE4CodeGen_Private::EPropertyClass::Enum, "AIState", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000080, 1, nullptr, STRUCT_OFFSET(NB_BaseCharacter_eventSetCurrentBehaviorState_Parms, AIState), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FBytePropertyParams NewProp_AIState_Underlying = { UE4CodeGen_Private::EPropertyClass::Byte, "UnderlyingType", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_AIState,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_AIState_Underlying,
+			};
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "Category", "AI" },
+				{ "ModuleRelativePath", "Public/Framework/NB_BaseCharacter.h" },
+				{ "ToolTip", "Set AI State  using EBotBehaviorType" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_ANB_BaseCharacter, "SetCurrentBehaviorState", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x04020401, sizeof(NB_BaseCharacter_eventSetCurrentBehaviorState_Parms), PropPointers, ARRAY_COUNT(PropPointers), 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_ANB_BaseCharacter_NoRegister()
 	{
 		return ANB_BaseCharacter::StaticClass();
@@ -182,8 +240,10 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 				{ &Z_Construct_UFunction_ANB_BaseCharacter_GainHealth, "GainHealth" }, // 4234958116
 				{ &Z_Construct_UFunction_ANB_BaseCharacter_GainStamina, "GainStamina" }, // 4179740586
 				{ &Z_Construct_UFunction_ANB_BaseCharacter_GetbIsAlive, "GetbIsAlive" }, // 3805349414
+				{ &Z_Construct_UFunction_ANB_BaseCharacter_GetCurrentBehaviorState, "GetCurrentBehaviorState" }, // 2709186734
 				{ &Z_Construct_UFunction_ANB_BaseCharacter_ReduceHealth, "ReduceHealth" }, // 3341641428
 				{ &Z_Construct_UFunction_ANB_BaseCharacter_ReduceStamina, "ReduceStamina" }, // 1878223011
+				{ &Z_Construct_UFunction_ANB_BaseCharacter_SetCurrentBehaviorState, "SetCurrentBehaviorState" }, // 1552343429
 			};
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
@@ -198,7 +258,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 				{ "ModuleRelativePath", "Public/Framework/NB_BaseCharacter.h" },
 			};
 #endif
-			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_CurrentState = { UE4CodeGen_Private::EPropertyClass::Enum, "CurrentState", RF_Public|RF_Transient|RF_MarkAsNative, 0x0020080000020001, 1, nullptr, STRUCT_OFFSET(ANB_BaseCharacter, CurrentState), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(NewProp_CurrentState_MetaData, ARRAY_COUNT(NewProp_CurrentState_MetaData)) };
+			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_CurrentState = { UE4CodeGen_Private::EPropertyClass::Enum, "CurrentState", RF_Public|RF_Transient|RF_MarkAsNative, 0x0020080000000005, 1, nullptr, STRUCT_OFFSET(ANB_BaseCharacter, CurrentState), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(NewProp_CurrentState_MetaData, ARRAY_COUNT(NewProp_CurrentState_MetaData)) };
 			static const UE4CodeGen_Private::FBytePropertyParams NewProp_CurrentState_Underlying = { UE4CodeGen_Private::EPropertyClass::Byte, "UnderlyingType", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxStamina_MetaData[] = {
@@ -256,7 +316,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANB_BaseCharacter, 836640212);
+	IMPLEMENT_CLASS(ANB_BaseCharacter, 4002099060);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ANB_BaseCharacter(Z_Construct_UClass_ANB_BaseCharacter, &ANB_BaseCharacter::StaticClass, TEXT("/Script/NB_AIPlugin"), TEXT("ANB_BaseCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ANB_BaseCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

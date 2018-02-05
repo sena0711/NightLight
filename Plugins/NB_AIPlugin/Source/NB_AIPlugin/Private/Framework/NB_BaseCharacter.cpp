@@ -109,3 +109,13 @@ void ANB_BaseCharacter::ReduceStamina(float ReductionValue)
 	}
 }
 
+void ANB_BaseCharacter::SetCurrentBehaviorState(EAIBehaviorType NewBehaviorState)
+{
+	CurrentState = NewBehaviorState;
+}
+
+EAIBehaviorType ANB_BaseCharacter::GetCurrentBehaviorState()
+{
+	return CurrentState;
+}
+

@@ -37,12 +37,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
 		class UAnimMontage* StunAnimation;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Status")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
 		ENPCPersonality NPCPersonality; 
-protected:
 
-	////Set AI State  using EBotBehaviorType
-	//UFUNCTION(BlueprintCallable, Category = "AI")
-	//	void SetAIState(EAIBehaviorType AIState);
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+		bool IsTalking;
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "AI")
+		ENPCPersonality GetNPCPersonality();
 };
