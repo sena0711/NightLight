@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeNB_AIPlugin_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/NB_AIPlugin",
 				PKG_CompiledIn | 0x00000000,
-				0x464E82D1,
-				0x3374F520,
+				0xE349E728,
+				0x6E3D21E1,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};

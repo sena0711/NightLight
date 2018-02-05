@@ -7,7 +7,19 @@
 #define EXISTINGBULLETTYPES 2
 
 
+UENUM(BlueprintType)
+enum class ENPCPersonality : uint8
+{
+	Neutral,
 
+	Shy,
+
+	Confident,
+
+	Formal,
+
+	Aggresive,
+};
 UENUM(BlueprintType)
 enum class EWeaponState : uint8
 {

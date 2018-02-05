@@ -8,12 +8,30 @@
 #include "ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+enum class EAIBehaviorType : uint8;
 #ifdef NB_AIPLUGIN_NB_BaseCharacter_generated_h
 #error "NB_BaseCharacter.generated.h already included, missing '#pragma once' in NB_BaseCharacter.h"
 #endif
 #define NB_AIPLUGIN_NB_BaseCharacter_generated_h
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseCharacter_h_13_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execGetCurrentBehaviorState) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(EAIBehaviorType*)Z_Param__Result=this->GetCurrentBehaviorState(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetCurrentBehaviorState) \
+	{ \
+		P_GET_ENUM(EAIBehaviorType,Z_Param_AIState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->SetCurrentBehaviorState(EAIBehaviorType(Z_Param_AIState)); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execReduceStamina) \
 	{ \
@@ -61,6 +79,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_NB_BaseCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetCurrentBehaviorState) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(EAIBehaviorType*)Z_Param__Result=this->GetCurrentBehaviorState(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetCurrentBehaviorState) \
+	{ \
+		P_GET_ENUM(EAIBehaviorType,Z_Param_AIState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->SetCurrentBehaviorState(EAIBehaviorType(Z_Param_AIState)); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execReduceStamina) \
 	{ \

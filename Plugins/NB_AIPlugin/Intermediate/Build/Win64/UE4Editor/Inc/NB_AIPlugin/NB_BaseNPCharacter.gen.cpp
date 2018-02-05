@@ -21,8 +21,6 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseNPCharacter() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_APawn_NoRegister();
 	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseNPCharacter_OnSeePlayer();
-	NB_AIPLUGIN_API UFunction* Z_Construct_UFunction_ANB_BaseNPCharacter_SetAIState();
-	NB_AIPLUGIN_API UEnum* Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType();
 	ENGINE_API UClass* Z_Construct_UClass_UAudioComponent_NoRegister();
 	AIMODULE_API UClass* Z_Construct_UClass_UPawnSensingComponent_NoRegister();
 	AIMODULE_API UClass* Z_Construct_UClass_UBehaviorTree_NoRegister();
@@ -33,7 +31,6 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseNPCharacter() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "OnHearNoise", (Native)&ANB_BaseNPCharacter::execOnHearNoise },
 			{ "OnSeePlayer", (Native)&ANB_BaseNPCharacter::execOnSeePlayer },
-			{ "SetAIState", (Native)&ANB_BaseNPCharacter::execSetAIState },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
 	}
@@ -94,33 +91,6 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseNPCharacter() {}
 		}
 		return ReturnFunction;
 	}
-	UFunction* Z_Construct_UFunction_ANB_BaseNPCharacter_SetAIState()
-	{
-		struct NB_BaseNPCharacter_eventSetAIState_Parms
-		{
-			EAIBehaviorType AIState;
-		};
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			static const UE4CodeGen_Private::FEnumPropertyParams NewProp_AIState = { UE4CodeGen_Private::EPropertyClass::Enum, "AIState", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000080, 1, nullptr, STRUCT_OFFSET(NB_BaseNPCharacter_eventSetAIState_Parms, AIState), Z_Construct_UEnum_NB_AIPlugin_EAIBehaviorType, METADATA_PARAMS(nullptr, 0) };
-			static const UE4CodeGen_Private::FBytePropertyParams NewProp_AIState_Underlying = { UE4CodeGen_Private::EPropertyClass::Byte, "UnderlyingType", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_AIState,
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_AIState_Underlying,
-			};
-#if WITH_METADATA
-			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-				{ "Category", "AI" },
-				{ "ModuleRelativePath", "Public/Framework/NB_BaseNPCharacter.h" },
-				{ "ToolTip", "Set AI State  using EBotBehaviorType" },
-			};
-#endif
-			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_ANB_BaseNPCharacter, "SetAIState", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x04020401, sizeof(NB_BaseNPCharacter_eventSetAIState_Parms), PropPointers, ARRAY_COUNT(PropPointers), 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
-		}
-		return ReturnFunction;
-	}
 	UClass* Z_Construct_UClass_ANB_BaseNPCharacter_NoRegister()
 	{
 		return ANB_BaseNPCharacter::StaticClass();
@@ -137,7 +107,6 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseNPCharacter() {}
 			static const FClassFunctionLinkInfo FuncInfo[] = {
 				{ &Z_Construct_UFunction_ANB_BaseNPCharacter_OnHearNoise, "OnHearNoise" }, // 2116399491
 				{ &Z_Construct_UFunction_ANB_BaseNPCharacter_OnSeePlayer, "OnSeePlayer" }, // 732271160
-				{ &Z_Construct_UFunction_ANB_BaseNPCharacter_SetAIState, "SetAIState" }, // 1407538229
 			};
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
@@ -195,7 +164,7 @@ void EmptyLinkFunctionForGeneratedCodeNB_BaseNPCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANB_BaseNPCharacter, 1521989304);
+	IMPLEMENT_CLASS(ANB_BaseNPCharacter, 1026252043);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ANB_BaseNPCharacter(Z_Construct_UClass_ANB_BaseNPCharacter, &ANB_BaseNPCharacter::StaticClass, TEXT("/Script/NB_AIPlugin"), TEXT("ANB_BaseNPCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ANB_BaseNPCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

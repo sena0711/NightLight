@@ -31,8 +31,7 @@ protected:
 		float CurrentStamina;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
 		float MaxStamina;
-
-	UPROPERTY(VisibleAnywhere, Category = "AI")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
 		EAIBehaviorType CurrentState;
 private:
 	/** is character alive use Get bisalive for update */
@@ -60,6 +59,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Status")
 		void ReduceStamina(float ReductionValue);
 
-
+	//Set AI State  using EBotBehaviorType
+	UFUNCTION(BlueprintCallable, Category = "AI")
+		void SetCurrentBehaviorState(EAIBehaviorType AIState);
+	//Set AI State  using EBotBehaviorType
+	UFUNCTION(BlueprintCallable, Category = "AI")
+		EAIBehaviorType GetCurrentBehaviorState();
 	
 };
