@@ -53,10 +53,10 @@ SourceArt/**/*.tga
 
 # Binary Files
 Binaries/*
-Plugins/AI_Plugin/Binaries/*
-Plugins/AI_Plugin/Intermediate/*
-/Plugins/AI_Plugin/Binaries
-/Plugins/AI_Plugin/Intermediate
+Plugins/NB_AIPlugin/Binaries/*
+Plugins/NB_AIPlugin/Intermediate/*
+/Plugins/NB_AIPlugin/Binaries
+/Plugins/NB_AIPlugin/Intermediate
 
 
 # Builds
@@ -77,6 +77,6 @@ Saved/*
 /Intermediate
 
 *.pdb
-Plugins/AI_Plugin/Binaries/Win64/UE4Editor-AI_Plugin.pdb
-Plugins/AI_Plugin/Intermediate/Build/Win64/UE4Editor/Development/AI_Plugin/AI_Plugin.generated.cpp.obj.response
+Plugins/NB_AIPlugin/Binaries/Win64/UE4Editor-AI_Plugin.pdb
+Plugins/NB_AIPlugin/Intermediate/Build/Win64/UE4Editor/Development/AI_Plugin/AI_Plugin.generated.cpp.obj.response
 /Content/DarkAmbientSoundtracks

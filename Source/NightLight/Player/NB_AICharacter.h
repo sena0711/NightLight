@@ -43,8 +43,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
 		bool IsTalking;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+		bool IsReadyToTalk;
+
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "AI")
 		ENPCPersonality GetNPCPersonality();
+
 };

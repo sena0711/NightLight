@@ -8,8 +8,8 @@ ANB_AICharacter::ANB_AICharacter()
 {
 	NPCPersonality = ENPCPersonality::Shy;
 	SetCurrentBehaviorState(EAIBehaviorType::Neutral);
-	IsTalking = false;
-	//SetAIState(EAIBehaviorType::Neutral);
+	IsTalking = false; 
+	IsReadyToTalk = false;
 }
 
 ENPCPersonality ANB_AICharacter::GetNPCPersonality()

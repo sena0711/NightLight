@@ -42,7 +42,8 @@ public class NB_AIPlugin : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-                "AIModule"
+                "AIModule",
+                "GameplayTasks",
             
 
                
