@@ -23,13 +23,13 @@
 /wd4838
 /w44668
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source"
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Private
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Behaivour
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Framework
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin
-/I D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Source\NB_AIPlugin
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Private
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Behaivour
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source\NB_AIPlugin\Public\Framework
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin
+/I D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Source\NB_AIPlugin
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public"
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public\Internationalization"
 /I "C:\Program Files\Epic Games\UE_4.18\Engine\Source\Runtime\Core\Public\Async"
@@ -362,9 +362,9 @@
 /FI"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Yu"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Fp"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.pch"
-"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp"
-/FI"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Definitions.NB_AIPlugin.h"
-/Fo"D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp.obj"
+"D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp"
+/FI"D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Definitions.NB_AIPlugin.h"
+/Fo"D:\Users\phuc.tran\Desktop\NightLight-master\NightLight-master\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Development\NB_AIPlugin\Module.NB_AIPlugin.gen.cpp.obj"
 /TP
 /GR-
 /W4

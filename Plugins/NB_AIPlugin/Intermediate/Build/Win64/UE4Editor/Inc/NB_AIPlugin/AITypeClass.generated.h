@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define NB_AIPLUGIN_AITypeClass_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID NightLight_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_AITypeClass_h
+#define CURRENT_FILE_ID NightLight_master_Plugins_NB_AIPlugin_Source_NB_AIPlugin_Public_Framework_AITypeClass_h
 
 
 #define FOREACH_ENUM_EAIBEHAVIORTYPE(op) \
