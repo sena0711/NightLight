@@ -42,5 +42,7 @@ public :
 		virtual void OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume);
 
 	/** Returns BehaviorComp subobject **/
-g	//FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
+	FORCEINLINE UBehaviorTree* GetBehaviorTree() const { return BehaviorTree; }
+
+	//FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
 };
