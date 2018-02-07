@@ -7,4 +7,5 @@
 #include "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin\NB_BT_FollwingAI.gen.cpp"
 #include "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin\NB_BT_GetRandomPoint.gen.cpp"
 #include "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin\NB_BT_GetTargetPoint.gen.cpp"
+#include "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin\NB_TargetPoint.gen.cpp"
 #include "D:\Users\Sena.kim\Desktop\NightLight\Plugins\NB_AIPlugin\Intermediate\Build\Win64\UE4Editor\Inc\NB_AIPlugin\NB_ZoneActor.gen.cpp"
