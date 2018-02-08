@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Framework/NB_BaseCharacter.h"
+#include "Behaivour/NB_TargetPoint.h"
 #include "NB_BaseNPCharacter.generated.h"
 
 /**
@@ -34,6 +35,8 @@ protected:
 		/* Triggered by pawn sensing component when a pawn is spotted */
 		/* When using functions as delegates they need to be marked with UFUNCTION(). We assign this function to FSeePawnDelegate */
 public :
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+		TArray<ANB_TargetPoint*> PatrolTargetPoints;
 
 	UFUNCTION()
 		virtual void OnSeePlayer(APawn* Pawn);

@@ -80,3 +80,9 @@ Saved/*
 Plugins/NB_AIPlugin/Binaries/Win64/UE4Editor-AI_Plugin.pdb
 Plugins/NB_AIPlugin/Intermediate/Build/Win64/UE4Editor/Development/AI_Plugin/AI_Plugin.generated.cpp.obj.response
 /Content/DarkAmbientSoundtracks
+/Content/Maps/AITestMap_BuiltData.uasset
+/Content/Maps/LevelOne_BuiltData.uasset
+/Content/Maps/LevelTwo_BuiltData.uasset
+/Content/Maps/LevelThree_BuiltData.uasset
+/Content/Maps/PersistantLevel_BuiltData.uasset
+/Content/Maps/TestMap_BuiltData.uasset

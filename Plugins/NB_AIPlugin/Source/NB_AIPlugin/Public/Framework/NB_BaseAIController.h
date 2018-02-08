@@ -33,16 +33,31 @@ public :
 	virtual void Possess(class APawn* InPawn) override;
 	virtual void UnPossess() override;
 
+
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+		FName PlayerCharacterKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+		FName AIStateKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+		FName MoveToLocationKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+		FName SelfActorKeyName;
+
+
 	//sets All keys in the blackboard
 	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
-		void ResetBlackBoardKeys(FName ObjectKeyName, FName AIStateKeyName, FName VectorKeyName);
+		void ResetBlackBoardKeys(FName ObjectKeyName, FName fAIStateKeyName, FName VectorKeyName);
 
 	//sets keys in the blackboard
 	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
 		void SetObjectKey(FName ObjectKeyName, APawn* ObjectReference);
 	//sets AIState keys in the blackboard
 	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
-		void SetAIStateKey(FName AIStateKeyName, EAIBehaviorType NewState);
+		void SetAIStateKey(FName fAIStateKeyName, EAIBehaviorType NewState);
 	//sets AIState keys in the blackboard
 	UFUNCTION(BlueprintCallable, Category = "BlackBoard")
 		void SetVectorKey(FName VectorKeyName, FVector NewVector);
