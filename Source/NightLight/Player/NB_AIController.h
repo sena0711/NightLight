@@ -17,18 +17,7 @@ public:
 		ANB_AIController();
 	
 protected:
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
-		FName PlayerCharacterKeyName;
 
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
-		FName AIStateKeyName;
-
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
-		FName MoveToLocationKeyName;
-
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
-		FName SelfActorKeyName;
-	
 
 public:
 
