@@ -22,7 +22,7 @@ enum class EAIBehaviorType : uint8
 	//Runnning away from an AI.
 	Flee,
 	//Move towards an AI
-	Helping,
+	Following,
 
 	Behavior01,
 

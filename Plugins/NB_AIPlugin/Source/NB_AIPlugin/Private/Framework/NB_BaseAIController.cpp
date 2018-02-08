@@ -14,6 +14,11 @@ ANB_BaseAIController::ANB_BaseAIController()
 	PrimaryActorTick.bCanEverTick = true;
 	BehaviorTreeComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTreeComp"));
 	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
+
+	PlayerCharacterKeyName = "PlayerCharacter";
+	AIStateKeyName = "AIState";
+	MoveToLocationKeyName = "MoveToLocation";
+	SelfActorKeyName = "SelfActor";
 }
 
 void ANB_BaseAIController::BeginPlay()
@@ -49,7 +54,7 @@ void ANB_BaseAIController::UnPossess()
 	/* Stop any behavior running as we no longer have a pawn to control */
 	BehaviorTreeComp->StopTree();
 }
-void ANB_BaseAIController::ResetBlackBoardKeys(FName ObjectKeyName, FName AIStateKeyName, FName VectorKeyName)
+void ANB_BaseAIController::ResetBlackBoardKeys(FName ObjectKeyName, FName fAIStateKeyName, FName VectorKeyName)
 {
 	if (APawn* PlayerCharacter = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn())
 	{
@@ -60,9 +65,9 @@ void ANB_BaseAIController::ResetBlackBoardKeys(FName ObjectKeyName, FName AIStat
 	}
 	if (ANB_BaseCharacter* AICharacter = Cast<ANB_BaseCharacter>(GetPawn()))
 	{
-		if (AIStateKeyName != "")
+		if (fAIStateKeyName != "")
 		{
-			SetAIStateKey(AIStateKeyName, AICharacter->GetCurrentBehaviorState());
+			SetAIStateKey(fAIStateKeyName, AICharacter->GetCurrentBehaviorState());
 		}
 	}
 }
@@ -73,13 +78,13 @@ void ANB_BaseAIController::SetObjectKey(FName ObjectKeyName, APawn * ObjectRefer
 		BlackboardComp->SetValueAsObject(ObjectKeyName, ObjectReference);
 	}
 }
-void ANB_BaseAIController::SetAIStateKey(FName AIStateKeyName, EAIBehaviorType NewState)
+void ANB_BaseAIController::SetAIStateKey(FName fAIStateKeyName, EAIBehaviorType NewState)
 {
 	uint8 temp;
 	if (BlackboardComp)
 	{
 		temp = static_cast<uint8>(NewState);
-		BlackboardComp->SetValueAsEnum(AIStateKeyName, temp);
+		BlackboardComp->SetValueAsEnum(fAIStateKeyName, temp);
 	}
 }
 
